@@ -20,7 +20,6 @@ public class Zombie : Unit {
 
 		GameObject decal = Instantiate(decalPrefab);
 		decal.transform.position = transform.position;
-		decal.transform.up = transform.forward * -1f;
 		decal.transform.Rotate(0f, 0f, randomAngle);
 		decal.transform.localScale += new Vector3(randomScale, randomScale, randomScale);
 	}

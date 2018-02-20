@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4482270366472540}
   - component: {fileID: 198342062742515894}
   - component: {fileID: 199644944163298312}
+  - component: {fileID: 114161520239215810}
   m_Layer: 0
   m_Name: BloodGlobs
   m_TagString: Untagged
@@ -39,7 +40,6 @@ GameObject:
   - component: {fileID: 198453566664512396}
   - component: {fileID: 199244721481208238}
   - component: {fileID: 114745066053423972}
-  - component: {fileID: 114172674348833130}
   m_Layer: 0
   m_Name: ImpactBloodSpurt
   m_TagString: Untagged
@@ -74,17 +74,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
---- !u!114 &114172674348833130
+--- !u!114 &114161520239215810
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1904737480673672}
+  m_GameObject: {fileID: 1085466299754984}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 99df55b46786f4640a1fe9d00c5bc8a8, type: 3}
+  m_Script: {fileID: 11500000, guid: e10f2897c4f8ed3429aa39ae9113e453, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  decalPrefab: {fileID: 1944687008264702, guid: c8877fb7af5d90b48a15b52a5c5486c3,
+    type: 2}
 --- !u!114 &114745066053423972
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2349,14 +2351,14 @@ ParticleSystem:
         m_NumAlphaKeys: 2
     range: {x: 0, y: 1}
   CollisionModule:
-    enabled: 0
+    enabled: 1
     serializedVersion: 3
     type: 1
     collisionMode: 0
     colliderForce: 0
     multiplyColliderForceByParticleSize: 0
     multiplyColliderForceByParticleSpeed: 0
-    multiplyColliderForceByCollisionAngle: 1
+    multiplyColliderForceByCollisionAngle: 0
     plane0: {fileID: 0}
     plane1: {fileID: 0}
     plane2: {fileID: 0}
@@ -2487,7 +2489,7 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     minKillSpeed: 0
-    maxKillSpeed: 10000
+    maxKillSpeed: 0
     radiusScale: 2
     collidesWith:
       serializedVersion: 2
@@ -2495,7 +2497,7 @@ ParticleSystem:
     maxCollisionShapes: 256
     quality: 1
     voxelSize: 2
-    collisionMessages: 0
+    collisionMessages: 1
     collidesWithDynamic: 1
     interiorCollisions: 0
   TriggerModule:
