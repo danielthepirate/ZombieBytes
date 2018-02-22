@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 199644944163298312}
   - component: {fileID: 114161520239215810}
   m_Layer: 0
-  m_Name: BloodGlobs
+  m_Name: BloodCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -87,6 +87,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   decalPrefab: {fileID: 1944687008264702, guid: c8877fb7af5d90b48a15b52a5c5486c3,
     type: 2}
+  sprayDistance: 2
 --- !u!114 &114745066053423972
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2368,7 +2369,7 @@ ParticleSystem:
     m_Dampen:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 0.5
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -2493,22 +2494,22 @@ ParticleSystem:
     radiusScale: 2
     collidesWith:
       serializedVersion: 2
-      m_Bits: 4294967295
+      m_Bits: 1
     maxCollisionShapes: 256
     quality: 1
-    voxelSize: 2
+    voxelSize: 1
     collisionMessages: 1
     collidesWithDynamic: 1
     interiorCollisions: 0
   TriggerModule:
-    enabled: 0
+    enabled: 1
     collisionShape0: {fileID: 0}
     collisionShape1: {fileID: 0}
     collisionShape2: {fileID: 0}
     collisionShape3: {fileID: 0}
     collisionShape4: {fileID: 0}
     collisionShape5: {fileID: 0}
-    inside: 1
+    inside: 0
     outside: 0
     enter: 0
     exit: 0
@@ -5595,7 +5596,7 @@ ParticleSystem:
         m_NumAlphaKeys: 2
     range: {x: 0, y: 1}
   CollisionModule:
-    enabled: 1
+    enabled: 0
     serializedVersion: 3
     type: 1
     collisionMode: 0

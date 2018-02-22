@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class ParticleLauncher : MonoBehaviour {
 
-	ParticleSystem particleLauncher;
-	Gradient particleColorGradient;
 	public GameObject decalPrefab;
-	//public ParticleDecalPool dropletDecalPool;
 
+	[SerializeField] float sprayDistance = 5f;
+
+	ParticleSystem particleLauncher;
 	List<ParticleCollisionEvent> collisionEvents;
 
 	// Use this for initialization
@@ -19,22 +19,41 @@ public class ParticleLauncher : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		//particleLauncher.Emit(1);
+
 	}
 
 	private void OnParticleCollision(GameObject other) {
 		int numCollisionEvents = ParticlePhysicsExtensions.GetCollisionEvents(particleLauncher, other, collisionEvents);
 
-		CreateBloodSplat();
+		for (int i = 0; i < collisionEvents.Count; i++) {
+			SpawnDecalBloodDroplets(collisionEvents[i]);	
+		}
+
 	}
 
-	private void CreateBloodSplat() {
+	private void SpawnDecalBloodDroplets(ParticleCollisionEvent particleCollisionEvent) {
 		float randomAngle = Random.Range(0f, 360f);
 		float randomScale = Random.Range(-0.2f, 0.2f);
 
-		GameObject decal = Instantiate(decalPrefab);
-		decal.transform.position = collisionEvents[0].intersection;
-		decal.transform.Rotate(0f, 0f, randomAngle);
-		decal.transform.localScale += new Vector3(randomScale, randomScale, randomScale);
+		Ray precise = new Ray();
+		RaycastHit hit;
+
+		//raising the collision height slightly makes the blood droplet positioning look better
+		Vector3 rayOrigin = particleCollisionEvent.intersection;
+		rayOrigin.y += 0.1f;
+		precise.origin = rayOrigin;
+		precise.direction = (particleCollisionEvent.intersection - transform.position).normalized;
+
+		//Debug.DrawRay(precise.origin, precise.direction, Color.white, 5f);
+		if (Physics.Raycast(precise, out hit, sprayDistance)) {
+
+			GameObject decal = Instantiate(decalPrefab);
+			decal.transform.position = hit.point;
+
+			decal.transform.rotation = Quaternion.LookRotation(particleCollisionEvent.normal * -1f);
+			decal.transform.Rotate(0f, 0f, randomAngle);
+
+			decal.transform.localScale += new Vector3(randomScale, randomScale, randomScale);
+		}
 	}
 }

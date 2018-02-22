@@ -14,7 +14,7 @@ public class Zombie : Unit {
 
 	}
 
-	private void CreateBloodSplat() {
+	private void SpawnDecalBloodPool() {
 		float randomAngle = Random.Range(0f, 360f);
 		float randomScale = Random.Range(-0.2f, 0.2f);
 
@@ -30,7 +30,7 @@ public class Zombie : Unit {
 	}
 
 	public override void Damage(int amount, float knockBack, RaycastHit hitPoint) {
-		CreateBloodSplat();
+		SpawnDecalBloodPool();
 
 		if (isDead) { return; }
 

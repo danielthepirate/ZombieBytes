@@ -23,8 +23,9 @@ GameObject:
   - component: {fileID: 23213003481656560}
   - component: {fileID: 95892702403271650}
   - component: {fileID: 114992715995562872}
+  - component: {fileID: 114160745254210644}
   m_Layer: 0
-  m_Name: DecalBloodSplatter
+  m_Name: DecalBloodPool
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -57,7 +58,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 30360939506b5ae438f3f868392cf69e, type: 2}
+  - {fileID: 2100000, guid: 748d11537ad8ed94eb3c930528da2b6d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -101,6 +102,22 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114160745254210644
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1944687008264702}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97bd85938c2a7fb4da2271af58dbe1f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  materialPool:
+  - {fileID: 2100000, guid: 748d11537ad8ed94eb3c930528da2b6d, type: 2}
+  - {fileID: 2100000, guid: 354aba47f110f314c8cb93c81e601900, type: 2}
+  - {fileID: 2100000, guid: 7b87ca6d1a6ff8c49909a4e67b9a2f99, type: 2}
+  - {fileID: 2100000, guid: b625a1271c0b8f949a7f9de2311f7202, type: 2}
 --- !u!114 &114992715995562872
 MonoBehaviour:
   m_ObjectHideFlags: 1

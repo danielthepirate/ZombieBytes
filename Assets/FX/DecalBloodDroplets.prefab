@@ -23,8 +23,9 @@ GameObject:
   - component: {fileID: 23213003481656560}
   - component: {fileID: 95892702403271650}
   - component: {fileID: 114992715995562872}
+  - component: {fileID: 114826238161276464}
   m_Layer: 0
-  m_Name: DecalBloodSpray
+  m_Name: DecalBloodDroplets
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -38,7 +39,7 @@ Transform:
   m_GameObject: {fileID: 1944687008264702}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
+  m_LocalScale: {x: 0.75, y: 0.75, z: 0.75}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -57,7 +58,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 30360939506b5ae438f3f868392cf69e, type: 2}
+  - {fileID: 2100000, guid: f8227a4cc9f567242a07d83d6db18048, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -101,6 +102,22 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114826238161276464
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1944687008264702}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97bd85938c2a7fb4da2271af58dbe1f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  materialPool:
+  - {fileID: 2100000, guid: f8227a4cc9f567242a07d83d6db18048, type: 2}
+  - {fileID: 2100000, guid: aeef671a9a9e73842a7a89b0b871cf15, type: 2}
+  - {fileID: 2100000, guid: 97a3db6633f267345b811e908203dc41, type: 2}
+  - {fileID: 2100000, guid: b8dd48a2920346544be859a0b7c91bf0, type: 2}
 --- !u!114 &114992715995562872
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -112,4 +129,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8871dc8926da8a43bfa3de5bc403553, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  delay: 2
+  delay: 5
