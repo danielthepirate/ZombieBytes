@@ -12,8 +12,6 @@ public class RandomMaterial : MonoBehaviour {
 	void Start () {
 		int randomIndex = Random.Range(0, materialPool.Length);
 		Renderer renderer = gameObject.GetComponent<Renderer>();
-		
-		print(randomIndex);
 		renderer.material = materialPool[randomIndex];
 	}
 }

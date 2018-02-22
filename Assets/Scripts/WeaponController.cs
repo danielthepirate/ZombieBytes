@@ -6,6 +6,7 @@ using UnityStandardAssets.CrossPlatformInput;
 public class WeaponController : MonoBehaviour {
 
 	[Header("Weapon")]
+	[SerializeField] float damage = 1f;
 	[SerializeField] float cooldown = 0.5f;
 	[SerializeField] float range = 20f;
 	[SerializeField] float spread = 0.5f;
@@ -37,7 +38,7 @@ public class WeaponController : MonoBehaviour {
 	}
 
 	public void Fire() {
-		int shootable = LayerMask.GetMask("Shootable");
+		int targetable = LayerMask.GetMask("Targetable");
 
 		weaponTimer = cooldown;
 		traceLine.enabled = true;
@@ -49,12 +50,12 @@ public class WeaponController : MonoBehaviour {
 		bullet.origin = weapon.transform.position;
 		bullet.direction = BulletDirection();
 
-		if (Physics.Raycast(bullet, out hit, range, shootable)) {
+		if (Physics.Raycast(bullet, out hit, range, targetable)) {
 			impactPoint = hit.point;
 			Unit unit = hit.collider.GetComponent<Unit>();
 
 			if (unit) {
-				unit.Damage(0, knockbackForce, hit);
+				unit.Damage(damage, knockbackForce, hit);
 			}
 		}
 		else {

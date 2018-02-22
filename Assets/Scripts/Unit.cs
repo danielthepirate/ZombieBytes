@@ -9,7 +9,7 @@ public class Unit : MonoBehaviour {
 
 	public bool isDead;
 
-	public virtual void Damage (int amount, float knockback, RaycastHit hitPoint) {
+	public virtual void Damage (float damageAmount, float knockback, RaycastHit hitPoint) {
 
 	}
 }

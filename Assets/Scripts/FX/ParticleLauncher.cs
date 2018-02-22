@@ -23,12 +23,10 @@ public class ParticleLauncher : MonoBehaviour {
 	}
 
 	private void OnParticleCollision(GameObject other) {
-		int numCollisionEvents = ParticlePhysicsExtensions.GetCollisionEvents(particleLauncher, other, collisionEvents);
 
 		for (int i = 0; i < collisionEvents.Count; i++) {
 			SpawnDecalBloodDroplets(collisionEvents[i]);	
 		}
-
 	}
 
 	private void SpawnDecalBloodDroplets(ParticleCollisionEvent particleCollisionEvent) {
@@ -44,7 +42,6 @@ public class ParticleLauncher : MonoBehaviour {
 		precise.origin = rayOrigin;
 		precise.direction = (particleCollisionEvent.intersection - transform.position).normalized;
 
-		//Debug.DrawRay(precise.origin, precise.direction, Color.white, 5f);
 		if (Physics.Raycast(precise, out hit, sprayDistance)) {
 
 			GameObject decal = Instantiate(decalPrefab);

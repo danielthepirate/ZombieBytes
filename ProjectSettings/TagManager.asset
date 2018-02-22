@@ -14,8 +14,8 @@ TagManager:
   - 
   - 
   - Player
-  - Shootable
-  - 
+  - Targetable
+  - HitTest
   - 
   - 
   - 
