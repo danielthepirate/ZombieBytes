@@ -23,6 +23,7 @@ public class ParticleLauncher : MonoBehaviour {
 	}
 
 	private void OnParticleCollision(GameObject other) {
+		ParticlePhysicsExtensions.GetCollisionEvents(particleLauncher, other, collisionEvents);
 
 		for (int i = 0; i < collisionEvents.Count; i++) {
 			SpawnDecalBloodDroplets(collisionEvents[i]);	
