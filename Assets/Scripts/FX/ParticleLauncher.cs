@@ -43,8 +43,10 @@ public class ParticleLauncher : MonoBehaviour {
 		precise.origin = rayOrigin;
 		precise.direction = (particleCollisionEvent.intersection - transform.position).normalized;
 
-		if (Physics.Raycast(precise, out hit, sprayDistance)) {
+		print(1);
 
+		if (Physics.Raycast(precise, out hit, sprayDistance)) {
+			print(2);
 			GameObject decal = Instantiate(decalPrefab);
 			decal.transform.position = hit.point;
 

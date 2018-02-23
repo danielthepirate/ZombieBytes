@@ -19,7 +19,6 @@ public class Zombie : Unit {
 
 	float lookAngle = 50f;
 	float lookSpeed = 1.4f;
-	Quaternion defaulRotation;
 	Quaternion targetRotation;
 
 	bool isAlive;
@@ -27,7 +26,6 @@ public class Zombie : Unit {
 
 	// Use this for initialization
 	void Start () {
-		defaulRotation = transform.rotation;
 		rigidBody = GetComponent<Rigidbody>();
 		nav = GetComponent<NavMeshAgent>();
 		animator = GetComponent<Animator>();
@@ -61,13 +59,14 @@ public class Zombie : Unit {
 
 		Transform head = transform.Find("Head");
 
-		Quaternion q = Quaternion.LookRotation(look);
-		if (Quaternion.Angle(q, defaulRotation) <= lookAngle) {
-			targetRotation = q;
+		Quaternion rotationToTarget = Quaternion.LookRotation(look);
+		if (Quaternion.Angle(rotationToTarget, transform.localRotation) <= lookAngle) {
+			targetRotation = rotationToTarget;
 		}
 
-		if (Quaternion.Angle(transform.rotation, q) >= lookAngle) {
-			head.transform.rotation = Quaternion.Slerp(head.transform.rotation, targetRotation, 0.01f);
+		if (Quaternion.Angle(transform.rotation, rotationToTarget) > lookAngle) {
+			//we need to correct if head angle is unnatrual
+			head.transform.rotation = Quaternion.Slerp(head.transform.rotation, transform.localRotation, Time.deltaTime * lookSpeed);
 		}
 		else {
 			head.transform.rotation = Quaternion.Slerp(head.transform.rotation, targetRotation, Time.deltaTime * lookSpeed);
