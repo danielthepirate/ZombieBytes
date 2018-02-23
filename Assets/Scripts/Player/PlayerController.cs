@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour {
 
 	Vector3 targetVector;
 	bool isFiring;
+	bool isAlive;
 
 	Rigidbody rigidBody;
 	float camRayLength = 100f;
@@ -27,6 +28,7 @@ public class PlayerController : MonoBehaviour {
 	void Start () {
 		rigidBody = GetComponent<Rigidbody>();
 		animator = GetComponent<Animator>();
+		isAlive = true;
 	}
 	
 	// Update is called once per frame
@@ -80,5 +82,13 @@ public class PlayerController : MonoBehaviour {
 
 	public Vector3 TargetVector() {
 		return targetVector;
+	}
+
+	public bool IsAlive() {
+		return isAlive;
+	}
+
+	public Vector3 Position() {
+		return transform.position;
 	}
 }
