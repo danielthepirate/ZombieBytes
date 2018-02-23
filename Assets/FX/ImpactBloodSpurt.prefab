@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4482270366472540}
   - component: {fileID: 198342062742515894}
   - component: {fileID: 199644944163298312}
-  - component: {fileID: 114161520239215810}
+  - component: {fileID: 114370163917875678}
   m_Layer: 0
   m_Name: BloodCollider
   m_TagString: Untagged
@@ -74,7 +74,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
---- !u!114 &114161520239215810
+--- !u!114 &114370163917875678
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -82,7 +82,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1085466299754984}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e10f2897c4f8ed3429aa39ae9113e453, type: 3}
+  m_Script: {fileID: 11500000, guid: 01e690af8c6054b459d7169a04cdc706, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   decalPrefab: {fileID: 1944687008264702, guid: c8877fb7af5d90b48a15b52a5c5486c3,
