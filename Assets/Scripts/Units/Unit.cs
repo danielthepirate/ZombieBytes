@@ -8,6 +8,7 @@ public class Unit : MonoBehaviour {
 	public float healthCurrent;
 
 	public bool isDead;
+	public bool isStun;
 
 	public virtual void Damage (float damageAmount, float knockback, RaycastHit hitPoint) {
 

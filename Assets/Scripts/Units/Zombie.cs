@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.AI;
 
 public class Zombie : Unit {
@@ -10,6 +7,8 @@ public class Zombie : Unit {
 	[SerializeField] GameObject hitFX;
 
 	[SerializeField] GameObject ragdoll;
+
+	public float stunDuration = 0.4f;
 
 	float timer;
 	PlayerController player;
@@ -21,7 +20,6 @@ public class Zombie : Unit {
 	float lookSpeed = 1.4f;
 	Quaternion targetRotation;
 
-	bool isAlive;
 	NavMeshAgent nav;
 
 	// Use this for initialization
@@ -30,26 +28,27 @@ public class Zombie : Unit {
 		nav = GetComponent<NavMeshAgent>();
 		animator = GetComponent<Animator>();
 
-		isAlive = true;
 		player = FindObjectOfType<PlayerController>();
 		bucketRagdoll = GameObject.Find("BucketRagdoll");
 	}
 
 	// Update is called once per frame
 	void Update () {
-		if (!isAlive) { return; }
+		if (isDead) { return; }
 
 		LookTowardsPlayer();
 		MoveTowardsPlayer();
 	}
 
 	private void MoveTowardsPlayer() {
-		if (player.IsAlive()) {
+		if (!player.isDead && !isStun) {
+			nav.enabled = true;
 			nav.SetDestination(player.Position());
 			animator.SetFloat("walkSpeed", 0.5f);
 		}
 		else {
 			nav.enabled = false;
+			animator.SetFloat("walkSpeed", 0f);
 		}
 	}
 
@@ -65,7 +64,7 @@ public class Zombie : Unit {
 		}
 
 		if (Quaternion.Angle(transform.rotation, rotationToTarget) > lookAngle) {
-			//we need to correct if head angle is unnatrual
+			//this keeps head angle within natural limits
 			head.transform.rotation = Quaternion.Slerp(head.transform.rotation, transform.localRotation, Time.deltaTime * lookSpeed);
 		}
 		else {
@@ -76,7 +75,7 @@ public class Zombie : Unit {
 
 	public override void Damage(float damageAmount, float knockBack, RaycastHit hitPoint) {
 		CreateDamageFX(hitPoint);
-		ApplyKnockback(knockBack, hitPoint);
+		ApplyKnockback(knockBack, hitPoint, stunDuration);
 
 		healthCurrent -= damageAmount;
 
@@ -86,7 +85,7 @@ public class Zombie : Unit {
 	}
 
 	private void KillUnit() {
-		isAlive = false;
+		isDead = true;
 
 		Instantiate(ragdoll, transform.position, transform.rotation, bucketRagdoll.transform);
 
@@ -97,9 +96,15 @@ public class Zombie : Unit {
 		Destroy(gameObject);
 	}
 
-	private void ApplyKnockback(float knockBack, RaycastHit hitPoint) {
+	private void ApplyKnockback(float knockBack, RaycastHit hitPoint, float duration) {
 		Vector3 force = -1 * hitPoint.normal * knockBack;
 		rigidBody.AddForce(force, ForceMode.Impulse);
+		isStun = true;
+		Invoke("Unstun", duration);
+	}
+
+	private void Unstun() {
+		isStun = false;
 	}
 
 	private void CreateDamageFX(RaycastHit hitPoint) {

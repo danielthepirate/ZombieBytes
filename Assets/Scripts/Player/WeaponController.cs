@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityStandardAssets.CrossPlatformInput;
 
 public class WeaponController : MonoBehaviour {
@@ -44,13 +42,13 @@ public class WeaponController : MonoBehaviour {
 		traceLine.enabled = true;
 		traceLine.SetPosition(0, weapon.transform.position);
 
-		Vector3 impactPoint;
-		Ray bullet = new Ray();
+		Ray weaponRay = new Ray();
 		RaycastHit hit;
-		bullet.origin = weapon.transform.position;
-		bullet.direction = BulletDirection();
+		Vector3 impactPoint;
 
-		if (Physics.Raycast(bullet, out hit, range, targetable)) {
+		ConstructWeaponRay(ref weaponRay);
+
+		if (Physics.Raycast(weaponRay, out hit, range, targetable)) {
 			impactPoint = hit.point;
 			Unit unit = hit.collider.GetComponent<Unit>();
 
@@ -59,19 +57,26 @@ public class WeaponController : MonoBehaviour {
 			}
 		}
 		else {
-			impactPoint = bullet.origin + bullet.direction * range;
+			impactPoint = weaponRay.origin + weaponRay.direction * range;
 		}
 		traceLine.SetPosition(1, impactPoint);
 	}
 
-	private Vector3 BulletDirection() {
+	private void ConstructWeaponRay(ref Ray ray) {
 		float randomY = 0.5f;
 		float offset = player.Accuracy() * spread;
+		Vector3 originOffset;
 
+		//direction
 		Vector3 direction = player.TargetVector();
 		direction.z += Random.Range(-offset, offset);
 		direction.y += Random.Range(0, randomY);
+		ray.direction = direction;
 
-		return direction;
+		//origin
+		//origin is set offset relative to the direction to allow point blank shots
+		originOffset = ray.origin - direction;
+		originOffset = originOffset.normalized * 0.5f;
+		ray.origin = weapon.transform.position + originOffset;
 	}
 }

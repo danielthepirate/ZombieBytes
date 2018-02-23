@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 198342062742515894}
   - component: {fileID: 199644944163298312}
   - component: {fileID: 114370163917875678}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: BloodCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -40,7 +40,7 @@ GameObject:
   - component: {fileID: 198453566664512396}
   - component: {fileID: 199244721481208238}
   - component: {fileID: 114745066053423972}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: ImpactBloodSpurt
   m_TagString: Untagged
   m_Icon: {fileID: 0}

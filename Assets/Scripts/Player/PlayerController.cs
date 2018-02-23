@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityStandardAssets.CrossPlatformInput;
 
 
-public class PlayerController : MonoBehaviour {
+public class PlayerController : Unit {
 
 	[Header("Unit")]
 	[SerializeField] float accuracy = 0.9f;
@@ -18,7 +15,6 @@ public class PlayerController : MonoBehaviour {
 
 	Vector3 targetVector;
 	bool isFiring;
-	bool isAlive;
 
 	Rigidbody rigidBody;
 	float camRayLength = 100f;
@@ -28,7 +24,6 @@ public class PlayerController : MonoBehaviour {
 	void Start () {
 		rigidBody = GetComponent<Rigidbody>();
 		animator = GetComponent<Animator>();
-		isAlive = true;
 	}
 	
 	// Update is called once per frame
@@ -65,9 +60,7 @@ public class PlayerController : MonoBehaviour {
 		Ray camRay = Camera.main.ScreenPointToRay(Input.mousePosition);
 		RaycastHit floorHit;
 
-		//if (Physics.Raycast(camRay, out floorHit, camRayLength, floorMask)) {		//source uses a floorMask for..?
 		if (Physics.Raycast(camRay, out floorHit, camRayLength, hitTest)) {
-			//targetVector = floorHit.point - transform.position;
 			targetVector = floorHit.point - transform.position;
 			targetVector.y = 0f;
 
@@ -82,10 +75,6 @@ public class PlayerController : MonoBehaviour {
 
 	public Vector3 TargetVector() {
 		return targetVector;
-	}
-
-	public bool IsAlive() {
-		return isAlive;
 	}
 
 	public Vector3 Position() {

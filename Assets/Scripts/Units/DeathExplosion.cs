@@ -2,29 +2,28 @@
 
 public class DeathExplosion : MonoBehaviour {
 
-	[SerializeField] float power = 50f;
-	[SerializeField] float radius = 5f;
-	[SerializeField] float upwardsForce = 1f;
+	[SerializeField] float power = 1f;
 
 	void Start () {
 		float powerRandom;
+		float forceFactor = 0.35f;
 
 		Vector3 explosionPoint = transform.position;
+		Vector3 force;
+
 		explosionPoint += new Vector3(
-			Random.Range(-0.25f, 0.25f), 
-			Random.Range(-0.25f, 0.25f), 
-			Random.Range(-0.25f, 0.25f)
+			Random.Range(-0.3f, 0.3f), 
+			Random.Range(0f, 0.5f), 
+			Random.Range(-0.3f, 0.3f)
 		);
 
+		Rigidbody[] rigidbodies = GetComponentsInChildren<Rigidbody>();
 
-		Collider[] colliders = Physics.OverlapSphere(explosionPoint, radius);
-
-		foreach (Collider hit in colliders) {
-			Rigidbody rb = hit.GetComponent<Rigidbody>();
-			if (rb) {
-				powerRandom = Random.Range(power * 0.85f, power * 1.15f);
-				rb.AddExplosionForce(powerRandom, explosionPoint, radius, upwardsForce);
-			}
+		foreach (Rigidbody rb in rigidbodies) {
+			powerRandom = Random.Range(power * 0.85f, power * 1.15f);
+			force = rb.transform.position - transform.position;
+			force = force.normalized * forceFactor * powerRandom;
+			rb.AddForceAtPosition(force, explosionPoint, ForceMode.Impulse);
 		}
 	}
 }
