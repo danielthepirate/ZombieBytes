@@ -249,7 +249,9 @@ GameObject:
   - component: {fileID: 65768221349962360}
   - component: {fileID: 95899227301766550}
   - component: {fileID: 195232891225214006}
+  - component: {fileID: 114018295013952132}
   - component: {fileID: 114009362689600946}
+  - component: {fileID: 135335130678681908}
   m_Layer: 9
   m_Name: Zombie
   m_TagString: Untagged
@@ -877,15 +879,39 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 759627ccd4ca0d74f9395e2b29ca5aae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthMax: 3
+  attackCooldown: 0.8
+  attackDamage: 20
+  state: 0
+--- !u!114 &114018295013952132
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1949933349421886}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ccc75361be6d6d41a7f35a0800c43c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   healthCurrent: 3
-  isDead: 0
-  isStun: 0
+  healthMaximum: 3
+  stunDuration: 0.25
   decalPrefab: {fileID: 1944687008264702, guid: ce999e67dbfc24e48b4e2233f00af440,
     type: 2}
   hitFX: {fileID: 1904737480673672, guid: 56e0b3a64ae150148a438e74439bc160, type: 2}
   ragdoll: {fileID: 1949933349421886, guid: f606a948bdf3e294c81b5068e612188d, type: 2}
-  stunDuration: 0.25
+--- !u!135 &135335130678681908
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1949933349421886}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.75
+  m_Center: {x: 0, y: 0.7, z: 0}
 --- !u!195 &195232891225214006
 NavMeshAgent:
   m_ObjectHideFlags: 1

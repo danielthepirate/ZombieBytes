@@ -1,47 +1,91 @@
-﻿using UnityEngine;
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.AI;
 
-public class Zombie : Unit {
+//putting this here so I can access it from EnemyHealth... there's gotta be a smarter way to do this
+public enum State { Pursue, Attack, Stun, Dead };
 
-	[SerializeField] GameObject decalPrefab;
-	[SerializeField] GameObject hitFX;
+public class Zombie : MonoBehaviour {
 
-	[SerializeField] GameObject ragdoll;
+	[SerializeField] float attackCooldown = 0.8f;
+	[SerializeField] float attackDamage = 20f;
 
-	public float stunDuration = 0.4f;
+	public State state;
 
-	float timer;
 	PlayerController player;
-	GameObject bucketRagdoll;
-	Rigidbody rigidBody;
 	Animator animator;
 
+	Quaternion targetRotation;
 	float lookAngle = 50f;
 	float lookSpeed = 1.4f;
-	Quaternion targetRotation;
 
 	NavMeshAgent nav;
+	bool playerInRange;
+	float attackTimer;
 
 	// Use this for initialization
 	void Start () {
-		rigidBody = GetComponent<Rigidbody>();
 		nav = GetComponent<NavMeshAgent>();
 		animator = GetComponent<Animator>();
 
 		player = FindObjectOfType<PlayerController>();
-		bucketRagdoll = GameObject.Find("BucketRagdoll");
+		state = State.Pursue;
 	}
 
 	// Update is called once per frame
 	void Update () {
-		if (isDead) { return; }
+		if (state == State.Dead) { return; }
+
+		if (playerInRange) {
+			AttemptAttack();
+		}
 
 		LookTowardsPlayer();
 		MoveTowardsPlayer();
 	}
 
+	private void AttemptAttack() {
+		if (player.isDead) { return; }
+
+		attackTimer += Time.deltaTime;
+		if (attackTimer >= attackCooldown) {
+			Attack();
+		}
+	}
+
+	private void Attack() {
+		PlayerHealth playerHealth = player.GetComponent<PlayerHealth>();
+		state = State.Attack;
+
+		attackTimer = 0f;
+		playerHealth.healthCurrent -= attackDamage;
+	}
+
+	public void ResetStateAfter(float delay) {
+		//todo have a singlular state reset timer control this, so we dont get states interrupting each other's resets
+		Invoke("ResetState", delay);
+	}
+
+	private void ResetState() {
+		state = State.Pursue;
+	}
+
+	private void OnTriggerEnter(Collider other) {
+		if(other.gameObject == player.gameObject) {
+			playerInRange = true;
+		}
+	}
+
+	private void OnTriggerExit(Collider other) {
+		if (other.gameObject == player.gameObject) {
+			playerInRange = false;
+		}
+	}
+
 	private void MoveTowardsPlayer() {
-		if (!player.isDead && !isStun) {
+		if (state == State.Pursue) {
 			nav.enabled = true;
 			nav.SetDestination(player.Position());
 			animator.SetFloat("walkSpeed", 0.5f);
@@ -70,57 +114,5 @@ public class Zombie : Unit {
 		else {
 			head.transform.rotation = Quaternion.Slerp(head.transform.rotation, targetRotation, Time.deltaTime * lookSpeed);
 		}
-
-	}
-
-	public override void Damage(float damageAmount, float knockBack, RaycastHit hitPoint) {
-		CreateDamageFX(hitPoint);
-		ApplyKnockback(knockBack, hitPoint, stunDuration);
-
-		healthCurrent -= damageAmount;
-
-		if (healthCurrent <= 0) {
-			KillUnit();
-		}
-	}
-
-	private void KillUnit() {
-		isDead = true;
-
-		Instantiate(ragdoll, transform.position, transform.rotation, bucketRagdoll.transform);
-
-		//placeholder so there's always the same number of zombies
-		EnemySpawner enemySpawner = FindObjectOfType<EnemySpawner>();
-		enemySpawner.SpawnZombie();
-
-		Destroy(gameObject);
-	}
-
-	private void ApplyKnockback(float knockBack, RaycastHit hitPoint, float duration) {
-		Vector3 force = -1 * hitPoint.normal * knockBack;
-		rigidBody.AddForce(force, ForceMode.Impulse);
-		isStun = true;
-		Invoke("Unstun", duration);
-	}
-
-	private void Unstun() {
-		isStun = false;
-	}
-
-	private void CreateDamageFX(RaycastHit hitPoint) {
-		var impactFX = Instantiate(hitFX, hitPoint.point, Quaternion.Euler(hitPoint.point));
-		impactFX.transform.forward = hitPoint.normal;
-
-		SpawnDecalBloodPool();
-	}
-
-	private void SpawnDecalBloodPool() {
-		float randomAngle = UnityEngine.Random.Range(0f, 360f);
-		float randomScale = UnityEngine.Random.Range(-0.2f, 0.2f);
-
-		GameObject decal = Instantiate(decalPrefab);
-		decal.transform.position = transform.position;
-		decal.transform.Rotate(0f, 0f, randomAngle);
-		decal.transform.localScale += new Vector3(randomScale, randomScale, randomScale);
 	}
 }

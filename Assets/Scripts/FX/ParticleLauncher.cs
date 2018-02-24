@@ -16,11 +16,6 @@ public class ParticleLauncher : MonoBehaviour {
 		collisionEvents = new List<ParticleCollisionEvent>();
 	}
 	
-	// Update is called once per frame
-	void Update () {
-
-	}
-
 	private void OnParticleCollision(GameObject other) {
 		ParticlePhysicsExtensions.GetCollisionEvents(particleLauncher, other, collisionEvents);
 

@@ -2,7 +2,7 @@
 using UnityStandardAssets.CrossPlatformInput;
 
 
-public class PlayerController : Unit {
+public class PlayerController : MonoBehaviour {
 
 	[Header("Unit")]
 	[SerializeField] float accuracy = 0.9f;
@@ -11,12 +11,13 @@ public class PlayerController : Unit {
 	[SerializeField] float speed = 4f;
 	[SerializeField] float turnRate = 8f;
 
+	public bool isDead;
+
 	Animator animator;
-
-	Vector3 targetVector;
-	bool isFiring;
-
 	Rigidbody rigidBody;
+
+	bool isFiring;
+	Vector3 targetVector;
 	float camRayLength = 100f;
 	float hThrow, vThrow;
 

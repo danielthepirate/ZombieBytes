@@ -86,6 +86,7 @@ GameObject:
   - component: {fileID: 54668600078998978}
   - component: {fileID: 65023410264598308}
   - component: {fileID: 95516415943885244}
+  - component: {fileID: 114985371893381914}
   - component: {fileID: 114792454695940594}
   - component: {fileID: 114513052794965640}
   m_Layer: 9
@@ -908,6 +909,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd4a3d2a07af1ff499eede26723ec7cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage: 1
   cooldown: 0.5
   range: 20
   spread: 1
@@ -938,6 +940,20 @@ MonoBehaviour:
   accuracy: 0.9
   speed: 10
   turnRate: 10
+  isDead: 0
+--- !u!114 &114985371893381914
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1382865986465106}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d14a5e38716d15742952cd26ee7085ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthCurrent: 100
+  healthMaximum: 100
 --- !u!120 &120327694206748112
 LineRenderer:
   m_ObjectHideFlags: 1

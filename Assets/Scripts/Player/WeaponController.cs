@@ -50,7 +50,7 @@ public class WeaponController : MonoBehaviour {
 
 		if (Physics.Raycast(weaponRay, out hit, range, targetable)) {
 			impactPoint = hit.point;
-			Unit unit = hit.collider.GetComponent<Unit>();
+			EnemyHealth unit = hit.collider.GetComponent<EnemyHealth>();
 
 			if (unit) {
 				unit.Damage(damage, knockbackForce, hit);
