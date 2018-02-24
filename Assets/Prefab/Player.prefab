@@ -837,8 +837,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.6, y: 1.5, z: 0.6}
-  m_Center: {x: 0, y: 0.7, z: 0}
+  m_Size: {x: 0.75, y: 1.5, z: 0.5}
+  m_Center: {x: 0, y: 0.7, z: 0.1}
 --- !u!95 &95516415943885244
 Animator:
   serializedVersion: 3
@@ -954,6 +954,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthCurrent: 100
   healthMaximum: 100
+  healthRegen: 1
 --- !u!120 &120327694206748112
 LineRenderer:
   m_ObjectHideFlags: 1

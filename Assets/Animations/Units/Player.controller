@@ -8,13 +8,13 @@ AnimatorController:
   m_Name: Player
   serializedVersion: 5
   m_AnimatorParameters:
-  - m_Name: walkSpeed
+  - m_Name: WalkSpeed
     m_Type: 1
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 0}
-  - m_Name: walkDirection
+  - m_Name: WalkDirection
     m_Type: 1
     m_DefaultFloat: 0
     m_DefaultInt: 0
@@ -65,7 +65,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 4
-    m_ConditionEvent: walkSpeed
+    m_ConditionEvent: WalkSpeed
     m_EventTreshold: 0.01
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1102778171939122546}
@@ -89,7 +89,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 4
-    m_ConditionEvent: walkSpeed
+    m_ConditionEvent: WalkSpeed
     m_EventTreshold: 0.01
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1102778171939122546}
@@ -113,10 +113,10 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 3
-    m_ConditionEvent: walkSpeed
+    m_ConditionEvent: WalkSpeed
     m_EventTreshold: 0
   - m_ConditionMode: 3
-    m_ConditionEvent: walkDirection
+    m_ConditionEvent: WalkDirection
     m_EventTreshold: -0.01
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1102668513187609870}
@@ -140,10 +140,10 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 3
-    m_ConditionEvent: walkSpeed
+    m_ConditionEvent: WalkSpeed
     m_EventTreshold: 0
   - m_ConditionMode: 4
-    m_ConditionEvent: walkDirection
+    m_ConditionEvent: WalkDirection
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1102552589715070858}
@@ -181,7 +181,7 @@ AnimatorState:
   m_TimeParameterActive: 0
   m_Motion: {fileID: 7400000, guid: e1ee4f5771fac4247aedf8585bf37f92, type: 2}
   m_Tag: 
-  m_SpeedParameter: walkSpeed
+  m_SpeedParameter: WalkSpeed
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
   m_TimeParameter: 
@@ -207,7 +207,7 @@ AnimatorState:
   m_TimeParameterActive: 0
   m_Motion: {fileID: 7400000, guid: e1ee4f5771fac4247aedf8585bf37f92, type: 2}
   m_Tag: 
-  m_SpeedParameter: walkSpeed
+  m_SpeedParameter: WalkSpeed
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
   m_TimeParameter: 

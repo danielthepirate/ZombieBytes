@@ -50,8 +50,8 @@ public class PlayerController : MonoBehaviour {
 		Vector3 heading = transform.InverseTransformDirection(movement);
 		float localVelocity = heading.z;
 
-		animator.SetFloat("walkDirection", localVelocity);
-		animator.SetFloat("walkSpeed", movement.magnitude * walkSpeedFactor);
+		animator.SetFloat("WalkDirection", localVelocity);
+		animator.SetFloat("WalkSpeed", movement.magnitude * walkSpeedFactor);
 
 		rigidBody.MovePosition(transform.position + movement);
 	}

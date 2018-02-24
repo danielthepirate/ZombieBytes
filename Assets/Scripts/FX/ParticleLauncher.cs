@@ -7,11 +7,13 @@ public class ParticleLauncher : MonoBehaviour {
 
 	[SerializeField] float sprayDistance = 5f;
 
+	GameObject bucketFX;
 	ParticleSystem particleLauncher;
 	List<ParticleCollisionEvent> collisionEvents;
 
 	// Use this for initialization
 	void Start () {
+		bucketFX = GameObject.Find("BucketFX");
 		particleLauncher = GetComponent<ParticleSystem>();
 		collisionEvents = new List<ParticleCollisionEvent>();
 	}
@@ -41,7 +43,7 @@ public class ParticleLauncher : MonoBehaviour {
 		//Debug.DrawRay(precise.origin, precise.direction, Color.white, 5f);
 		if (Physics.Raycast(precise, out hit, sprayDistance)) {
 
-			GameObject decal = Instantiate(decalPrefab);
+			GameObject decal = Instantiate(decalPrefab, bucketFX.transform);
 			decal.transform.position = hit.point;
 
 			decal.transform.rotation = Quaternion.LookRotation(particleCollisionEvent.normal * -1f);

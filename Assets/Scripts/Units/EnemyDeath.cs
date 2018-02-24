@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class DeathExplosion : MonoBehaviour {
+public class EnemyDeath : MonoBehaviour {
 
 	[SerializeField] float power = 1f;
 
@@ -23,7 +23,9 @@ public class DeathExplosion : MonoBehaviour {
 			powerRandom = Random.Range(power * 0.85f, power * 1.15f);
 			force = rb.transform.position - transform.position;
 			force = force.normalized * forceFactor * powerRandom;
+			rb.transform.parent = null;
 			rb.AddForceAtPosition(force, explosionPoint, ForceMode.Impulse);
 		}
+		Destroy(gameObject);
 	}
 }
