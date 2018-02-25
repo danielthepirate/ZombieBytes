@@ -5,6 +5,7 @@ public class PlayerHealth : MonoBehaviour {
 
 	[SerializeField] GameObject hitDecal;
 	[SerializeField] GameObject ragdoll;
+	[SerializeField] GameObject playerCamera;
 
 
 	public float healthCurrent = 100f;
@@ -47,6 +48,7 @@ public class PlayerHealth : MonoBehaviour {
 
 	public void Damage(float damageAmount, float knockBack, Vector3 damageOrigin) {
 		ApplyKnockback(knockBack, damageOrigin);
+		ApplyCameraShake();
 		CreateHitDecal();
 
 		healthCurrent -= damageAmount;
@@ -54,6 +56,13 @@ public class PlayerHealth : MonoBehaviour {
 
 		if (healthCurrent <= 0) {
 			KillUnit(knockBack, damageOrigin);
+		}
+	}
+
+	private void ApplyCameraShake() {
+		PlayerCamera camera = playerCamera.GetComponent<PlayerCamera>();
+		if (camera) {
+			camera.ShakeLight();
 		}
 	}
 
@@ -73,6 +82,10 @@ public class PlayerHealth : MonoBehaviour {
 
 	private void KillUnit(float knockBack, Vector3 damageOrigin) {
 		player.isDead = true;
+		BoxCollider cb = GetComponent<BoxCollider>();
+		SphereCollider cs = GetComponent<SphereCollider>();
+		cb.enabled = false;
+		cs.enabled = false;
 
 		GameObject newRagdoll = Instantiate(ragdoll, transform.position, transform.rotation, bucketRagdolls.transform);
 		PlayerDeath playerDeath = newRagdoll.GetComponent<PlayerDeath>();

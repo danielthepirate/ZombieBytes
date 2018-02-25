@@ -12,7 +12,6 @@ public class EnemyHealth : MonoBehaviour {
 	[SerializeField] GameObject ragdoll;
 
 	GameObject bucketFX;
-	GameObject bucketRagdolls;
 	Rigidbody rb;
 	EnemyController zombie;
 
@@ -22,7 +21,6 @@ public class EnemyHealth : MonoBehaviour {
 		zombie = GetComponent<EnemyController>();
 
 		bucketFX = GameObject.Find("BucketFX");
-		bucketRagdolls = GameObject.Find("BucketRagdolls");
 	}
 
 	public void Damage(float damageAmount, float knockBack, RaycastHit hitPoint) {
@@ -39,7 +37,7 @@ public class EnemyHealth : MonoBehaviour {
 	private void KillUnit() {
 		zombie.state = EnemyController.State.Dead;
 
-		Instantiate(ragdoll, transform.position, transform.rotation, bucketRagdolls.transform);
+		Instantiate(ragdoll, transform.position, transform.rotation);
 
 		//placeholder so there's always the same number of zombies
 		EnemySpawner enemySpawner = FindObjectOfType<EnemySpawner>();

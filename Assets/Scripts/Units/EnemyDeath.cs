@@ -8,6 +8,7 @@ public class EnemyDeath : MonoBehaviour {
 		float powerRandom;
 		float forceFactor = 0.35f;
 
+		GameObject bucketRagdolls = GameObject.Find("BucketRagdolls");
 		Vector3 explosionPoint = transform.position;
 		Vector3 force;
 
@@ -23,7 +24,7 @@ public class EnemyDeath : MonoBehaviour {
 			powerRandom = Random.Range(power * 0.85f, power * 1.15f);
 			force = rb.transform.position - transform.position;
 			force = force.normalized * forceFactor * powerRandom;
-			rb.transform.parent = null;
+			rb.transform.parent = bucketRagdolls.transform;
 			rb.AddForceAtPosition(force, explosionPoint, ForceMode.Impulse);
 		}
 		Destroy(gameObject);

@@ -119,6 +119,7 @@ GameObject:
   - component: {fileID: 4784837219962258}
   - component: {fileID: 54370089976158888}
   - component: {fileID: 65535276350919612}
+  - component: {fileID: 135317112024521334}
   - component: {fileID: 95125481075847204}
   - component: {fileID: 114399610248016496}
   - component: {fileID: 114669076650409718}
@@ -928,6 +929,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hitDecal: {fileID: 1944687008264702, guid: ce999e67dbfc24e48b4e2233f00af440, type: 2}
   ragdoll: {fileID: 1879627062621652, guid: 8511268fe778e4341b4da9f0ebbb6bfd, type: 2}
+  playerCamera: {fileID: 0}
   healthCurrent: 100
   healthMaximum: 100
   healthRegen: 2
@@ -1046,3 +1048,15 @@ LineRenderer:
     generateLightingData: 0
   m_UseWorldSpace: 1
   m_Loop: 0
+--- !u!135 &135317112024521334
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1382865986465106}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.375
+  m_Center: {x: 0, y: 0.5, z: 0}

@@ -5,6 +5,7 @@ using UnityEngine;
 public class DetectPlayerProximity : MonoBehaviour {
 
 	[SerializeField] GameObject unit;
+	[SerializeField] GameObject target;
 
 	EnemyController enemy;
 	PlayerController player;
