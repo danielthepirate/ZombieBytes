@@ -13,15 +13,16 @@ public class EnemyHealth : MonoBehaviour {
 
 	GameObject bucketFX;
 	GameObject bucketRagdolls;
-	Rigidbody rigidBody;
+	Rigidbody rb;
 	EnemyController zombie;
 
 	// Use this for initialization
 	void Start () {
-		rigidBody = GetComponent<Rigidbody>();
+		rb = GetComponent<Rigidbody>();
+		zombie = GetComponent<EnemyController>();
+
 		bucketFX = GameObject.Find("BucketFX");
 		bucketRagdolls = GameObject.Find("BucketRagdolls");
-		zombie = GetComponent<EnemyController>();
 	}
 
 	public void Damage(float damageAmount, float knockBack, RaycastHit hitPoint) {
@@ -49,7 +50,7 @@ public class EnemyHealth : MonoBehaviour {
 
 	private void ApplyKnockback(float knockBack, RaycastHit hitPoint, float duration) {
 		Vector3 force = -1 * hitPoint.normal * knockBack;
-		rigidBody.AddForce(force, ForceMode.Impulse);
+		rb.AddForce(force, ForceMode.Impulse);
 		zombie.state = EnemyController.State.Stun;
 		zombie.ResetStateAfter(stunDuration);
 	}
@@ -58,10 +59,10 @@ public class EnemyHealth : MonoBehaviour {
 		var impactFX = Instantiate(hitFX, hitPoint.point, Quaternion.Euler(hitPoint.point), bucketFX.transform);
 		impactFX.transform.forward = hitPoint.normal;
 
-		SpawnDecalBloodPool();
+		CreateHitDecal();
 	}
 
-	private void SpawnDecalBloodPool() {
+	private void CreateHitDecal() {
 		float randomAngle = Random.Range(0f, 360f);
 		float randomScale = Random.Range(-0.2f, 0.2f);
 

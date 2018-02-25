@@ -11,6 +11,8 @@ public class EnemyController : MonoBehaviour {
 	[SerializeField] float attackDamage = 20f;
 	[SerializeField] float attackCooldown = 1f;
 	[SerializeField] float attackDuration = 1f;
+	[SerializeField] float attackDamagePoint = 0.4f;
+	[SerializeField] float attackKnockback = 6f;
 
 	public enum State { Pursue, Attack, Stun, Dead };
 	public State state;
@@ -80,7 +82,6 @@ public class EnemyController : MonoBehaviour {
 	}
 
 	private void Attack() {
-		PlayerHealth playerHealth = player.GetComponent<PlayerHealth>();
 
 		attackTimer = attackCooldown;
 		state = State.Attack;
@@ -88,10 +89,20 @@ public class EnemyController : MonoBehaviour {
 
 		animator.SetTrigger("Attack");
 		animator.SetFloat("AttackSpeed", 1.2f / attackDuration);
-		playerHealth.healthCurrent -= attackDamage;
+		Invoke("DealDamage", attackDamagePoint);
+	}
+
+	private void DealDamage() {
+		PlayerHealth playerHealth = player.GetComponent<PlayerHealth>();
+
+		if (playerInRange) {
+			playerHealth.Damage(attackDamage, attackKnockback, transform.position);
+		}
 	}
 
 	private void MoveTowardsPlayer() {
+		if (player.isDead) { return; }
+
 		Vector3 look = player.Position() - transform.position;
 		look.y = 0f;
 		Quaternion rotationToTarget = Quaternion.LookRotation(look);
@@ -99,7 +110,6 @@ public class EnemyController : MonoBehaviour {
 		//nav mesh agent doesnt seem to care about agent facing as much as we do
 		//this corrects it so the zombie will turn to put the player into attack range
 		if (playerInProximity && !playerInRange) {
-			//turn to face layer
 			transform.rotation = Quaternion.Slerp(transform.rotation, rotationToTarget, Time.deltaTime * turnSpeed);
 		}
 
@@ -115,6 +125,8 @@ public class EnemyController : MonoBehaviour {
 	}
 
 	private void LookTowardsPlayer() {
+		if (player.isDead) { return; }
+
 		Vector3 look = player.Position() - transform.position;
 		look.y = 0f;
 

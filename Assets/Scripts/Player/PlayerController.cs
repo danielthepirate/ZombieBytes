@@ -14,7 +14,7 @@ public class PlayerController : MonoBehaviour {
 	public bool isDead;
 
 	Animator animator;
-	Rigidbody rigidBody;
+	Rigidbody rb;
 
 	bool isFiring;
 	Vector3 targetVector;
@@ -23,12 +23,13 @@ public class PlayerController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		rigidBody = GetComponent<Rigidbody>();
+		rb = GetComponent<Rigidbody>();
 		animator = GetComponent<Animator>();
 	}
 	
 	// Update is called once per frame
 	void Update () {
+		if (isDead) { return; }
 		ProcesssInput();
 	}
 
@@ -53,7 +54,7 @@ public class PlayerController : MonoBehaviour {
 		animator.SetFloat("WalkDirection", localVelocity);
 		animator.SetFloat("WalkSpeed", movement.magnitude * walkSpeedFactor);
 
-		rigidBody.MovePosition(transform.position + movement);
+		rb.MovePosition(transform.position + movement);
 	}
 
 	private void ProcessTurning() {
@@ -66,7 +67,7 @@ public class PlayerController : MonoBehaviour {
 			targetVector.y = 0f;
 
 			var rotation = Quaternion.LookRotation(targetVector);
-			rigidBody.MoveRotation(Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * turnRate));
+			rb.MoveRotation(Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * turnRate));
 		}
 	}
 
