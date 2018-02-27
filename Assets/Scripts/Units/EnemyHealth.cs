@@ -36,14 +36,23 @@ public class EnemyHealth : MonoBehaviour {
 
 	private void KillUnit() {
 		zombie.state = EnemyController.State.Dead;
-
 		Instantiate(ragdoll, transform.position, transform.rotation);
+
+		AddScore();
 
 		//placeholder so there's always the same number of zombies
 		EnemySpawner enemySpawner = FindObjectOfType<EnemySpawner>();
 		enemySpawner.SpawnZombie();
 
 		Destroy(gameObject);
+	}
+
+	private void AddScore() {
+		ScoreController scoreController = GameObject.FindGameObjectWithTag("ScoreController").GetComponent<ScoreController>();
+		ScoreMultiplier scoreMultiplier = GameObject.FindGameObjectWithTag("ScoreMultiplier").GetComponent<ScoreMultiplier>();
+		int score = zombie.score;
+		scoreController.AddScore(score);
+		scoreMultiplier.Increment();
 	}
 
 	private void ApplyKnockback(float knockBack, RaycastHit hitPoint, float duration) {

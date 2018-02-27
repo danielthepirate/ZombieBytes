@@ -8,11 +8,15 @@ using UnityEngine.AI;
 
 public class EnemyController : MonoBehaviour {
 
+	[Header("Attack")]
 	[SerializeField] float attackDamage = 20f;
 	[SerializeField] float attackCooldown = 1f;
 	[SerializeField] float attackDuration = 1f;
 	[SerializeField] float attackDamagePoint = 0.4f;
 	[SerializeField] float attackKnockback = 6f;
+
+	[Header("Data")]
+	public int score = 10;
 
 	public enum State { Pursue, Attack, Stun, Dead };
 	public State state;

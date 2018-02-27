@@ -957,6 +957,7 @@ MonoBehaviour:
   attackDuration: 1.2
   attackDamagePoint: 0.75
   attackKnockback: 6
+  score: 10
   state: 0
   playerInRange: 0
   playerInProximity: 0
@@ -977,6 +978,8 @@ MonoBehaviour:
   hitDecal: {fileID: 1944687008264702, guid: ce999e67dbfc24e48b4e2233f00af440, type: 2}
   hitFX: {fileID: 1904737480673672, guid: 56e0b3a64ae150148a438e74439bc160, type: 2}
   ragdoll: {fileID: 1949933349421886, guid: f606a948bdf3e294c81b5068e612188d, type: 2}
+  scoreController: {fileID: 0}
+  scoreMultiplier: {fileID: 0}
 --- !u!114 &114683419527694826
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - SpawnPoint
+  - ScoreController
+  - ScoreMultiplier
   layers:
   - Default
   - TransparentFX
