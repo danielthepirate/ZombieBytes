@@ -17,7 +17,7 @@ public class PlayerDeath : MonoBehaviour {
 
 	private void AttachHealthBarToRagdoll() {
 		GameObject body = transform.Find("Body").gameObject;
-		AlignWithObject healthBar = GameObject.Find("HealthBar").GetComponent<AlignWithObject>();
+		AlignRectToObject healthBar = GameObject.Find("HealthBar").GetComponent<AlignRectToObject>();
 		healthBar.followObject = body.gameObject;
 	}
 

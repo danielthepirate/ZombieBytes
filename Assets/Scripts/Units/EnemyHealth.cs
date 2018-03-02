@@ -2,14 +2,17 @@
 
 public class EnemyHealth : MonoBehaviour {
 
+	[Header("Health Data")]
 	public float healthCurrent = 4f;
 	public float healthMaximum = 4f;
 
 	public float stunDuration = 0.4f;
 
+	[Header("Components")]
 	[SerializeField] GameObject hitDecal;
 	[SerializeField] GameObject hitFX;
 	[SerializeField] GameObject ragdoll;
+	[SerializeField] GameObject floatingScoreText;
 
 	GameObject bucketFX;
 	Rigidbody rb;
@@ -38,13 +41,41 @@ public class EnemyHealth : MonoBehaviour {
 		zombie.state = EnemyController.State.Dead;
 		Instantiate(ragdoll, transform.position, transform.rotation);
 
+		Instantiate(floatingScoreText, transform.position, transform.rotation);
+
 		AddScore();
+		CreateFloatingScoreText();
 
 		//placeholder so there's always the same number of zombies
 		EnemySpawner enemySpawner = FindObjectOfType<EnemySpawner>();
 		enemySpawner.SpawnZombie();
 
 		Destroy(gameObject);
+	}
+
+	private void CreateFloatingScoreText() {
+		GameObject newFloatingScoreText = Instantiate(floatingScoreText);
+
+		FloatingScoreTextPro controller = newFloatingScoreText.GetComponent<FloatingScoreTextPro>();
+		if (controller) {
+			controller.SetScore(zombie.score);
+			controller.SetWorldPosition(zombie.transform);
+		}
+
+		//FloatingScoreText newFloatingScoreText = Instantiate(floatingScoreText).GetComponent<FloatingScoreText>();
+		//newFloatingScoreText.score = zombie.score;
+		//newFloatingScoreText.SetWorldPosition(zombie.transform);
+
+		//CreateFloatingScoreText createFloatingScoreText = GameObject.FindGameObjectWithTag("CanvasWorldUI").GetComponent<CreateFloatingScoreText>();
+		////FloatingScoreText newFloatingScoreText = Instantiate(floatingScoreText).GetComponent<FloatingScoreText>();
+
+		//FloatingScoreText newFloatingScoreText = createFloatingScoreText.Create(gameObject);
+
+		//if (newFloatingScoreText) {
+		//	newFloatingScoreText.score = score;
+		//	//newFloatingScoreText.Follow(zombie.gameObject);
+		//	//newFloatingScoreText.transform.parent = null;
+		//}
 	}
 
 	private void AddScore() {

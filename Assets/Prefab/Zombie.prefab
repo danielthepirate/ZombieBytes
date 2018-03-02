@@ -462,7 +462,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1949933349421886}
   m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
-  m_LocalPosition: {x: 0.03, y: 0, z: 3.72}
+  m_LocalPosition: {x: 0, y: 0, z: 7.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4025691053581206}
@@ -978,8 +978,8 @@ MonoBehaviour:
   hitDecal: {fileID: 1944687008264702, guid: ce999e67dbfc24e48b4e2233f00af440, type: 2}
   hitFX: {fileID: 1904737480673672, guid: 56e0b3a64ae150148a438e74439bc160, type: 2}
   ragdoll: {fileID: 1949933349421886, guid: f606a948bdf3e294c81b5068e612188d, type: 2}
-  scoreController: {fileID: 0}
-  scoreMultiplier: {fileID: 0}
+  floatingScoreText: {fileID: 1913282589698170, guid: d7177579e356518468ae310648fc8439,
+    type: 2}
 --- !u!114 &114683419527694826
 MonoBehaviour:
   m_ObjectHideFlags: 1

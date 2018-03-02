@@ -20,6 +20,10 @@ public class ScoreMultiplier : MonoBehaviour {
 	float timer;
 	float multiplierScaling = 50f;
 
+	private void Start() {
+		ApplyMultiplierFill();
+	}
+
 	//Update on editor value change
 	private void OnValidate() {
 		Set(multiplier);
