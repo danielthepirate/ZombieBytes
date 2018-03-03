@@ -1,42 +1,33 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
+﻿using UnityEngine;
+using TMPro;
 
 public class FloatingScoreText : MonoBehaviour {
 
-	[SerializeField] Transform canvas;
-	[SerializeField] Text text;
 	[SerializeField] float offset;
+	[SerializeField] TextMeshPro textMesh;
 
-	public int score = 10;
-
-	// Use this for initialization
-	void Start () {
-		//Transform canvas = GameObject.FindGameObjectWithTag("CanvasWorldUI").transform;
-		gameObject.SetActive(true);
-		//FormatScoreText();
-	}
+	[Header("debug")]
+	public int debugScore;
+	public Transform debugSpawn;
 
 	private void OnValidate() {
-		FormatScoreText();
+		SetScore(debugScore);
+		if (debugSpawn) {
+			SetWorldPosition(debugSpawn);
+		}
 	}
 
-	public void SetWorldPosition(Transform spawnPosition) {
-		Vector3 worldPosition = new Vector3(spawnPosition.position.x, spawnPosition.position.y + offset, spawnPosition.position.z);
-		Vector3 screenPosition = Camera.main.WorldToScreenPoint(worldPosition);
-		transform.position = screenPosition;
-		FormatScoreText();
+	private void Start() {
+		GameObject bucket = GameObject.Find("BucketFloatingScoreText");
+		transform.parent = bucket.transform;
 	}
 
-	private void FormatScoreText() {
-		text.text = "+" + score;
+	public void SetWorldPosition(Transform spawn) {
+		Vector3 worldPosition = new Vector3(spawn.position.x, spawn.position.y + offset, spawn.position.z);
+		transform.position = worldPosition;
 	}
 
-	//public void Follow(GameObject followObject) {
-	//	AlignWithObject alignWithObject = gameObject.GetComponent<AlignWithObject>();
-	//	if (alignWithObject) {
-	//		alignWithObject.followObject = followObject;
-	//	}
-	//}
+	public void SetScore(int score) {
+		textMesh.SetText("+" + score);
+	}
 }

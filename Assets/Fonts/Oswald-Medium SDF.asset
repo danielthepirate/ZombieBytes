@@ -11,19 +11,19 @@ MonoBehaviour:
   m_Script: {fileID: -667331979, guid: 89f0137620f6af44b9ba852b4190e64e, type: 3}
   m_Name: Oswald-Medium SDF
   m_EditorClassIdentifier: 
-  hashCode: 0
+  hashCode: -759616829
   material: {fileID: 21761312438835220}
-  materialHashCode: 0
+  materialHashCode: -301338776
   fontAssetType: 1
   m_fontInfo:
     Name: Oswald
     PointSize: 74
-    Scale: 0
+    Scale: 1
     CharacterCount: 97
     LineHeight: 109.6875
     Baseline: 0
     Ascender: 88.3125
-    CapHeight: 0
+    CapHeight: 60
     Descender: -21.4375
     CenterLine: 0
     SuperscriptOffset: 88.3125
@@ -33,7 +33,7 @@ MonoBehaviour:
     UnderlineThickness: 3.7
     strikethrough: 24.318182
     strikethroughThickness: 3.7
-    TabWidth: 0
+    TabWidth: 180
     Padding: 5
     AtlasWidth: 512
     AtlasHeight: 512
@@ -42,10 +42,10 @@ MonoBehaviour:
   - id: 32
     x: 6
     y: 517
-    width: 0
-    height: 0
+    width: 18
+    height: 109.75
     xOffset: 0
-    yOffset: 0
+    yOffset: 88.3125
     xAdvance: 18
     scale: 1
   - id: 33
@@ -1021,23 +1021,23 @@ Material:
     - _FaceDilate: 0
     - _FaceUVSpeedX: 0
     - _FaceUVSpeedY: 0
-    - _GlowInner: 0.05
-    - _GlowOffset: 0
-    - _GlowOuter: 0.05
-    - _GlowPower: 0.75
+    - _GlowInner: 0.2
+    - _GlowOffset: 1
+    - _GlowOuter: 1
+    - _GlowPower: 0.35
     - _GradientScale: 6
     - _LightAngle: 3.1416
     - _MaskSoftnessX: 0
     - _MaskSoftnessY: 0
-    - _OutlineSoftness: 0
+    - _OutlineSoftness: 0.4
     - _OutlineUVSpeedX: 0
     - _OutlineUVSpeedY: 0
-    - _OutlineWidth: 0
+    - _OutlineWidth: 0.1
     - _PerspectiveFilter: 0.875
     - _Reflectivity: 10
-    - _ScaleRatioA: 1
-    - _ScaleRatioB: 1
-    - _ScaleRatioC: 1
+    - _ScaleRatioA: 0.8333333
+    - _ScaleRatioB: 0.33854166
+    - _ScaleRatioC: 0.6770833
     - _ScaleX: 1
     - _ScaleY: 1
     - _ShaderFlags: 0
@@ -1061,7 +1061,7 @@ Material:
     - _ClipRect: {r: -32767, g: -32767, b: 32767, a: 32767}
     - _EnvMatrixRotation: {r: 0, g: 0, b: 0, a: 0}
     - _FaceColor: {r: 1, g: 1, b: 1, a: 1}
-    - _GlowColor: {r: 0, g: 1, b: 0, a: 0.5}
+    - _GlowColor: {r: 0.8156863, g: 0.8156863, b: 0.8156863, a: 0.8156863}
     - _MaskCoord: {r: 0, g: 0, b: 32767, a: 32767}
     - _OutlineColor: {r: 0, g: 0, b: 0, a: 1}
     - _ReflectFaceColor: {r: 0, g: 0, b: 0, a: 1}

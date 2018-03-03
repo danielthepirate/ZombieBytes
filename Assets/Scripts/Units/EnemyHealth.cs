@@ -17,6 +17,7 @@ public class EnemyHealth : MonoBehaviour {
 	GameObject bucketFX;
 	Rigidbody rb;
 	EnemyController zombie;
+	int score;
 
 	// Use this for initialization
 	void Start () {
@@ -41,7 +42,7 @@ public class EnemyHealth : MonoBehaviour {
 		zombie.state = EnemyController.State.Dead;
 		Instantiate(ragdoll, transform.position, transform.rotation);
 
-		Instantiate(floatingScoreText, transform.position, transform.rotation);
+		
 
 		AddScore();
 		CreateFloatingScoreText();
@@ -55,33 +56,15 @@ public class EnemyHealth : MonoBehaviour {
 
 	private void CreateFloatingScoreText() {
 		GameObject newFloatingScoreText = Instantiate(floatingScoreText);
-
-		FloatingScoreTextPro controller = newFloatingScoreText.GetComponent<FloatingScoreTextPro>();
-		if (controller) {
-			controller.SetScore(zombie.score);
-			controller.SetWorldPosition(zombie.transform);
-		}
-
-		//FloatingScoreText newFloatingScoreText = Instantiate(floatingScoreText).GetComponent<FloatingScoreText>();
-		//newFloatingScoreText.score = zombie.score;
-		//newFloatingScoreText.SetWorldPosition(zombie.transform);
-
-		//CreateFloatingScoreText createFloatingScoreText = GameObject.FindGameObjectWithTag("CanvasWorldUI").GetComponent<CreateFloatingScoreText>();
-		////FloatingScoreText newFloatingScoreText = Instantiate(floatingScoreText).GetComponent<FloatingScoreText>();
-
-		//FloatingScoreText newFloatingScoreText = createFloatingScoreText.Create(gameObject);
-
-		//if (newFloatingScoreText) {
-		//	newFloatingScoreText.score = score;
-		//	//newFloatingScoreText.Follow(zombie.gameObject);
-		//	//newFloatingScoreText.transform.parent = null;
-		//}
+		FloatingScoreText controller = newFloatingScoreText.GetComponent<FloatingScoreText>();
+		controller.SetWorldPosition(zombie.transform);
+		controller.SetScore(score);
 	}
 
 	private void AddScore() {
 		ScoreController scoreController = GameObject.FindGameObjectWithTag("ScoreController").GetComponent<ScoreController>();
 		ScoreMultiplier scoreMultiplier = GameObject.FindGameObjectWithTag("ScoreMultiplier").GetComponent<ScoreMultiplier>();
-		int score = zombie.score;
+		score = zombie.score * scoreMultiplier.multiplier;
 		scoreController.AddScore(score);
 		scoreMultiplier.Increment();
 	}

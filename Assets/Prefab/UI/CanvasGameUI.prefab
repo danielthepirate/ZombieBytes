@@ -727,8 +727,8 @@ MonoBehaviour:
   text: {fileID: 114177425931656672}
   isEnabled: 1
   multiplier: 1
-  baseMultiplierTime: 5
-  multiplierTime: 5
+  baseMultiplierTime: 3.5
+  multiplierTime: 3.5
 --- !u!114 &114564924027997014
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1127,7 +1127,7 @@ Canvas:
   m_GameObject: {fileID: 1514065710107124}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
+  m_RenderMode: 1
   m_Camera: {fileID: 0}
   m_PlaneDistance: 100
   m_PixelPerfect: 0

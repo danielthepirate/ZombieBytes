@@ -22,7 +22,6 @@ GameObject:
   - component: {fileID: 223792842797238828}
   - component: {fileID: 114581171103332442}
   - component: {fileID: 114724268985395370}
-  - component: {fileID: 114876740633944558}
   m_Layer: 5
   m_Name: CanvasWorldUI
   m_TagString: CanvasWorldUI
@@ -225,19 +224,6 @@ MonoBehaviour:
     m_Mode: 0
     m_NumColorKeys: 6
     m_NumAlphaKeys: 2
---- !u!114 &114876740633944558
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1498628478192804}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e937508d856bbee45968f0f2e589098b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  floatingScoreText: {fileID: 1438421729224482, guid: 946e1920379bcab4bbda93e2f6ed5b38,
-    type: 2}
 --- !u!222 &222585934674663732
 CanvasRenderer:
   m_ObjectHideFlags: 1
