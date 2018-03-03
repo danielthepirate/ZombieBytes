@@ -430,8 +430,9 @@ MonoBehaviour:
   target: {fileID: 0}
   smoothing: 12
   reductionFactor: 1
-  maxOffset: 0.4
-  maxAngle: 7
+  frequency: 15
+  maxOffset: 1
+  maxAngle: 8
   shakeLight: 0.45
   shakeModer: 0.6
   shakeHeavy: 0.85

@@ -11,6 +11,7 @@ public class PlayerCamera : MonoBehaviour {
 
 	[Header("Camera Shake")]
 	[SerializeField] float reductionFactor = 2f;
+	[SerializeField] float frequency = 10f;
 	[SerializeField] float maxOffset = 0.25f;
 	[SerializeField] float maxAngle = 3.5f;
 
@@ -49,12 +50,13 @@ public class PlayerCamera : MonoBehaviour {
 		cameraPosition = Vector3.Lerp(cameraPosition, targetPosition, smoothing * Time.deltaTime);
 
 		if(trauma > 0.01f) {
+			float seed = Time.time * frequency;
 			float reductionPerTick = reductionFactor * Time.deltaTime;
-			trauma = Mathf.Clamp((trauma - reductionPerTick),0f,1f);
+			trauma = Mathf.Clamp01((trauma - reductionPerTick));
 
-			shakeX = maxOffset * shakeAmount * Random.Range(-1f, 1f);
-			shakeZ = maxOffset * shakeAmount * Random.Range(-1f, 1f);
-			angle = maxAngle * shakeAmount * Random.Range(-1f, 1f);
+			shakeX = maxOffset * shakeAmount * PerlinNoise(seed);
+			shakeZ = maxOffset * shakeAmount * PerlinNoise(seed + 1);
+			angle = maxAngle * shakeAmount * PerlinNoise(seed + 2);
 		}
 		else {
 			trauma = 0f;
@@ -65,6 +67,12 @@ public class PlayerCamera : MonoBehaviour {
 
 		mainCamera.transform.rotation = cameraRotation * shakeAngle;
 		mainCamera.transform.position = cameraPosition + shakeVector;
+	}
+
+	//returns a float from -1.0 to 1.0 based on seed
+	float PerlinNoise(float seed) {
+		float noise = (Mathf.Clamp01(Mathf.PerlinNoise(seed, 0f)) - 0.5f) * 2f;
+		return noise;
 	}
 
 	public void AddTrauma(float t) {
