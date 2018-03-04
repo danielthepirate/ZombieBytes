@@ -1,0 +1,88 @@
+﻿using UnityEngine;
+using UnityStandardAssets.CrossPlatformInput;
+
+public class SubmachineGun : MonoBehaviour {
+
+	[SerializeField] PlayerController player;
+
+	[Header("Weapon Data")]
+	[SerializeField] float damage = 1f;
+	[SerializeField] float cooldown = 0.5f;
+	[SerializeField] float range = 20f;
+	[SerializeField] float spread = 0.5f;
+	[SerializeField] float traceTime = 0.02f;
+	[SerializeField] float knockbackForce = 1f;
+
+	[Header("Muzzle")]
+	[SerializeField] GameObject muzzle;
+	[SerializeField] ParticleSystem muzzleFlash;
+	[SerializeField] float fireDelay = 0.1f;
+
+
+	LineRenderer traceLine;
+	float weaponTimer;
+
+	// Use this for initialization
+	void Start () {
+		traceLine = GetComponent<LineRenderer>();
+	}
+
+	// Update is called once per frame
+	void Update() {
+		weaponTimer -= Time.deltaTime;
+
+		if (CrossPlatformInputManager.GetButton("Fire") && weaponTimer < Mathf.Epsilon && Time.timeScale != 0) {
+			weaponTimer = cooldown;
+
+			muzzleFlash.Play();
+			Invoke("Fire", fireDelay);
+		}
+	}
+
+	private void DisableTraceLine() {
+		traceLine.enabled = false;
+	}
+
+	public void Fire() {
+		int targetable = LayerMask.GetMask("Targetable");
+
+		traceLine.enabled = true;
+		traceLine.SetPosition(0, muzzle.transform.position);
+
+		Ray weaponRay = new Ray();
+		RaycastHit hit;
+		Vector3 impactPoint;
+
+		ConstructWeaponRay(ref weaponRay);
+
+		if (Physics.Raycast(weaponRay, out hit, range, targetable)) {
+			impactPoint = hit.point;
+			EnemyHealth unit = hit.collider.GetComponent<EnemyHealth>();
+
+			if (unit) {
+				unit.Damage(damage, knockbackForce, hit);
+			}
+		}
+		else {
+			impactPoint = weaponRay.origin + weaponRay.direction * range;
+		}
+		traceLine.SetPosition(1, impactPoint);
+		Invoke("DisableTraceLine", traceTime);
+	}
+
+	private void ConstructWeaponRay(ref Ray ray) {
+		float offset = player.Accuracy() * spread;
+		Vector3 originOffset;
+
+		//direction
+		Vector3 direction = player.TargetVector();
+		direction = Quaternion.Euler(0f, Random.Range(-offset, offset), 0f) * direction;
+		ray.direction = direction;
+
+		//origin
+		//origin is set offset relative to the direction to allow point blank shots
+		originOffset = ray.origin - direction;
+		originOffset = originOffset.normalized * 0.5f;
+		ray.origin = muzzle.transform.position + originOffset;
+	}
+}
