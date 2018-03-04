@@ -1,9 +1,11 @@
 ﻿using UnityEngine;
 using UnityStandardAssets.CrossPlatformInput;
 
-public class WeaponController : MonoBehaviour {
+public class Pistol : MonoBehaviour {
 
-	[Header("Weapon")]
+	[SerializeField] PlayerController player;
+
+	[Header("Weapon Data")]
 	[SerializeField] float damage = 1f;
 	[SerializeField] float cooldown = 0.5f;
 	[SerializeField] float range = 20f;
@@ -11,16 +13,18 @@ public class WeaponController : MonoBehaviour {
 	[SerializeField] float traceTime = 0.02f;
 	[SerializeField] float knockbackForce = 1f;
 
-	PlayerController player;
-	Weapon weapon;
+	[Header("Muzzle")]
+	[SerializeField] GameObject muzzle;
+	[SerializeField] ParticleSystem muzzleFlash;
+	[SerializeField] float fireDelay = 0.1f;
+
+
 	LineRenderer traceLine;
 	float weaponTimer;
 
 	// Use this for initialization
 	void Start () {
-		player = GetComponent<PlayerController>();
-		weapon = GetComponentInChildren<Weapon>();
-		traceLine = weapon.GetComponent<LineRenderer>();
+		traceLine = GetComponent<LineRenderer>();
 	}
 
 	// Update is called once per frame
@@ -28,19 +32,22 @@ public class WeaponController : MonoBehaviour {
 		weaponTimer -= Time.deltaTime;
 
 		if (CrossPlatformInputManager.GetButton("Fire") && weaponTimer < Mathf.Epsilon && Time.timeScale != 0) {
-			Fire();
+			weaponTimer = cooldown;
+
+			muzzleFlash.Play();
+			Invoke("Fire", fireDelay);
 		}
-		if (weaponTimer < cooldown - traceTime) {
-			traceLine.enabled = false;
-		}
+	}
+
+	private void DisableTraceLine() {
+		traceLine.enabled = false;
 	}
 
 	public void Fire() {
 		int targetable = LayerMask.GetMask("Targetable");
 
-		weaponTimer = cooldown;
 		traceLine.enabled = true;
-		traceLine.SetPosition(0, weapon.transform.position);
+		traceLine.SetPosition(0, muzzle.transform.position);
 
 		Ray weaponRay = new Ray();
 		RaycastHit hit;
@@ -60,6 +67,7 @@ public class WeaponController : MonoBehaviour {
 			impactPoint = weaponRay.origin + weaponRay.direction * range;
 		}
 		traceLine.SetPosition(1, impactPoint);
+		Invoke("DisableTraceLine", traceTime);
 	}
 
 	private void ConstructWeaponRay(ref Ray ray) {
@@ -77,6 +85,6 @@ public class WeaponController : MonoBehaviour {
 		//origin is set offset relative to the direction to allow point blank shots
 		originOffset = ray.origin - direction;
 		originOffset = originOffset.normalized * 0.5f;
-		ray.origin = weapon.transform.position + originOffset;
+		ray.origin = muzzle.transform.position + originOffset;
 	}
 }
