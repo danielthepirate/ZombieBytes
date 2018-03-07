@@ -75,7 +75,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1660278012894194
 GameObject:
   m_ObjectHideFlags: 0
@@ -395,10 +395,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
-  damage: 1
+  WeaponName: Pistol
+  ammoCount: -1
+  ammoMax: -1
   cooldown: 0.5
+  damage: 1
   range: 20
-  spread: 1
+  spread: 10
   traceTime: 0.04
   knockbackForce: 6
   muzzle: {fileID: 1032518796581562}

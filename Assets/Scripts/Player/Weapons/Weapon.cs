@@ -1,0 +1,55 @@
+﻿using System;
+using UnityEngine;
+using UnityStandardAssets.CrossPlatformInput;
+
+public class Weapon : MonoBehaviour {
+
+	public PlayerController player;
+
+	[Header("Basic Properties")]
+	public string WeaponName;
+	public int ammoCount;
+	public int ammoMax;
+
+	[SerializeField] float cooldown = 0.5f;
+
+	PlayerWeapon weaponController;
+	float weaponTimer;
+
+	private void Awake() {
+		weaponController = player.gameObject.GetComponent<PlayerWeapon>();
+	}
+
+	public virtual void ProcessWeaponInput() {
+		weaponTimer -= Time.deltaTime;
+
+		if (WeaponIsUseable()) {
+			UseWeapon();
+		}
+	}
+
+	public virtual bool WeaponIsUseable() {
+		return CrossPlatformInputManager.GetButton("Fire") && OffCooldown() && HasAmmo();
+	}
+
+	private bool HasAmmo() {
+		return !UsesAmmo() || ammoCount > 0;
+	}
+
+	private bool OffCooldown() {
+		return weaponTimer < Mathf.Epsilon && Time.timeScale != 0;
+	}
+
+	public virtual void UseWeapon() {
+		weaponTimer = cooldown;
+
+		if (UsesAmmo()) {
+			ammoCount -= 1;
+			weaponController.UpdateWeaponDisplay();
+		}
+	}
+
+	public bool UsesAmmo() {
+		return ammoMax != -1;
+	}
+}

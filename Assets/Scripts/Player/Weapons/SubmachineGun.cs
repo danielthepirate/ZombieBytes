@@ -1,26 +1,21 @@
 ﻿using UnityEngine;
 using UnityStandardAssets.CrossPlatformInput;
 
-public class SubmachineGun : MonoBehaviour {
+public class SubmachineGun : Weapon {
 
-	[SerializeField] PlayerController player;
-
-	[Header("Weapon Data")]
+	[Header("Damage Data")]
 	[SerializeField] float damage = 1f;
-	[SerializeField] float cooldown = 0.5f;
 	[SerializeField] float range = 20f;
 	[SerializeField] float spread = 0.5f;
 	[SerializeField] float traceTime = 0.02f;
 	[SerializeField] float knockbackForce = 1f;
 
-	[Header("Muzzle")]
+	[Header("Launch Data")]
 	[SerializeField] GameObject muzzle;
 	[SerializeField] ParticleSystem muzzleFlash;
 	[SerializeField] float fireDelay = 0.1f;
 
-
 	LineRenderer traceLine;
-	float weaponTimer;
 
 	// Use this for initialization
 	void Start () {
@@ -29,14 +24,15 @@ public class SubmachineGun : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update() {
-		weaponTimer -= Time.deltaTime;
+		traceLine.SetPosition(0, muzzle.transform.position);
+		ProcessWeaponInput();
+	}
 
-		if (CrossPlatformInputManager.GetButton("Fire") && weaponTimer < Mathf.Epsilon && Time.timeScale != 0) {
-			weaponTimer = cooldown;
+	public override void UseWeapon() {
+		base.UseWeapon();
 
-			muzzleFlash.Play();
-			Invoke("Fire", fireDelay);
-		}
+		muzzleFlash.Play();
+		Invoke("Fire", fireDelay);
 	}
 
 	private void DisableTraceLine() {
@@ -45,9 +41,6 @@ public class SubmachineGun : MonoBehaviour {
 
 	public void Fire() {
 		int targetable = LayerMask.GetMask("Targetable");
-
-		traceLine.enabled = true;
-		traceLine.SetPosition(0, muzzle.transform.position);
 
 		Ray weaponRay = new Ray();
 		RaycastHit hit;
@@ -66,7 +59,10 @@ public class SubmachineGun : MonoBehaviour {
 		else {
 			impactPoint = weaponRay.origin + weaponRay.direction * range;
 		}
+
 		traceLine.SetPosition(1, impactPoint);
+		traceLine.enabled = true;
+
 		Invoke("DisableTraceLine", traceTime);
 	}
 
