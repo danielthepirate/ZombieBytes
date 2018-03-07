@@ -42,7 +42,7 @@ public class Pistol : Weapon {
 	}
 
 	public void Fire() {
-		int targetable = LayerMask.GetMask("Targetable");
+		int targetable = LayerMask.GetMask("Enemy");
 
 		Ray weaponRay = new Ray();
 		RaycastHit hit;
@@ -62,11 +62,27 @@ public class Pistol : Weapon {
 			impactPoint = weaponRay.origin + weaponRay.direction * range;
 		}
 
+		ApplyForceAlongRaycast(weaponRay);
+
 		traceLine.SetPosition(1, impactPoint);
 		traceLine.enabled = true;
 
 		Invoke("DisableTraceLine", traceTime);
 		AddCameraTrauma(trauma);
+	}
+
+	private void ApplyForceAlongRaycast(Ray weaponRay) {
+		int ragdoll = LayerMask.GetMask("Ragdoll");
+
+		Vector3 impactNormalized = weaponRay.direction.normalized * knockbackForce * 0.1f;
+		RaycastHit[] physicsHits;
+		physicsHits = Physics.RaycastAll(weaponRay, range, ragdoll);
+		foreach (RaycastHit impact in physicsHits) {
+			Rigidbody rb = impact.rigidbody;
+			if (rb) {
+				rb.AddForce(impactNormalized, ForceMode.Impulse);
+			}
+		}
 	}
 
 	private void ConstructWeaponRay(ref Ray ray) {

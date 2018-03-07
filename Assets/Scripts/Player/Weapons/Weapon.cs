@@ -61,14 +61,10 @@ public class Weapon : MonoBehaviour {
 	}
 
 	public void AddCameraTrauma(float amount) {
-
 		PlayerCamera playerCamera = player.GetComponent<PlayerHealth>().playerCamera;
 
 		if (playerCamera) {
 			playerCamera.AddTrauma(amount);
 		}
-		//PlayerHealth player = gameObject.GetComponent<PlayerHealth>();
-		//PlayerCamera camera = player.playerCamera.GetComponent<PlayerCamera>();
-		//camera.AddTrauma(amount);
 	}
 }

@@ -51,5 +51,12 @@ public class PlayerWeapon : MonoBehaviour {
 		else {
 			weaponText.text = activeWeapon.WeaponName;
 		}
+
+		if(activeWeapon.ammoCount != 0) {
+			weaponText.color = Color.white;
+		}
+		else {
+			weaponText.color = new Color(0.8f, 0.8f, 0.8f);
+		}
 	}
 }

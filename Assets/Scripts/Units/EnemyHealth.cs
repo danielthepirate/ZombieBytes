@@ -6,13 +6,16 @@ public class EnemyHealth : MonoBehaviour {
 	public float healthCurrent = 4f;
 	public float healthMaximum = 4f;
 
-	public float stunDuration = 0.4f;
+	public float stunFactor = 0.04f;
 
 	[Header("Components")]
 	[SerializeField] GameObject hitDecal;
 	[SerializeField] GameObject hitFX;
 	[SerializeField] GameObject ragdoll;
 	[SerializeField] GameObject floatingScoreText;
+
+	[Header("Loot Table")]
+	[SerializeField] Loot loot;
 
 	GameObject bucketFX;
 	Rigidbody rb;
@@ -29,7 +32,7 @@ public class EnemyHealth : MonoBehaviour {
 
 	public void Damage(float damageAmount, float knockBack, RaycastHit hitPoint) {
 		CreateDamageFX(hitPoint);
-		ApplyKnockback(knockBack, hitPoint, stunDuration);
+		ApplyKnockback(knockBack, hitPoint);
 
 		healthCurrent -= damageAmount;
 
@@ -42,10 +45,9 @@ public class EnemyHealth : MonoBehaviour {
 		zombie.state = EnemyController.State.Dead;
 		Instantiate(ragdoll, transform.position, transform.rotation);
 
-		
-
 		AddScore();
-		CreateFloatingScoreText();
+		SpawnScoreText();
+		SpawnLoot();
 
 		//placeholder so there's always the same number of zombies
 		EnemySpawner enemySpawner = FindObjectOfType<EnemySpawner>();
@@ -54,7 +56,19 @@ public class EnemyHealth : MonoBehaviour {
 		Destroy(gameObject);
 	}
 
-	private void CreateFloatingScoreText() {
+	private void SpawnLoot() {
+		int roll = Random.Range(1, 100);
+
+		if(roll <= loot.dropChance) {
+			Vector3 lootPosition = new Vector3(transform.position.x, 0.8f, transform.position.z);
+			GameObject newLoot = Instantiate(loot.item);
+			newLoot.transform.position = lootPosition;
+		}
+
+
+	}
+
+	private void SpawnScoreText() {
 		GameObject newFloatingScoreText = Instantiate(floatingScoreText);
 		FloatingScoreText controller = newFloatingScoreText.GetComponent<FloatingScoreText>();
 		controller.SetWorldPosition(zombie.transform);
@@ -69,7 +83,8 @@ public class EnemyHealth : MonoBehaviour {
 		scoreMultiplier.Increment();
 	}
 
-	private void ApplyKnockback(float knockBack, RaycastHit hitPoint, float duration) {
+	private void ApplyKnockback(float knockBack, RaycastHit hitPoint) {
+		float stunDuration = knockBack * stunFactor;
 		Vector3 force = -1 * hitPoint.normal * knockBack;
 		rb.AddForce(force, ForceMode.Impulse);
 		zombie.state = EnemyController.State.Stun;

@@ -292,7 +292,7 @@ GameObject:
   - component: {fileID: 4836274938255154}
   - component: {fileID: 114401804111653624}
   m_Layer: 8
-  m_Name: Zombie_Ragdoll
+  m_Name: Zombie_RagdollDebug
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1371,7 +1371,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1081514668983202}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9d679e41f6b7d27478e693523bd9ea1a, type: 3}
   m_Name: 
@@ -1397,7 +1397,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1325537417897024}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9d679e41f6b7d27478e693523bd9ea1a, type: 3}
   m_Name: 
@@ -1410,7 +1410,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1103796709545410}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9d679e41f6b7d27478e693523bd9ea1a, type: 3}
   m_Name: 
@@ -1436,7 +1436,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1023132378618464}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9d679e41f6b7d27478e693523bd9ea1a, type: 3}
   m_Name: 
@@ -1454,14 +1454,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3bcbc90a0d280d46a79981799ebae22, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  power: 1
+  power: 0
 --- !u!114 &114621614505482856
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1291822217937686}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9d679e41f6b7d27478e693523bd9ea1a, type: 3}
   m_Name: 
@@ -1474,7 +1474,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1046077542377830}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9d679e41f6b7d27478e693523bd9ea1a, type: 3}
   m_Name: 
@@ -1487,7 +1487,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1010070162301398}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9d679e41f6b7d27478e693523bd9ea1a, type: 3}
   m_Name: 
@@ -1500,7 +1500,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1488297702987328}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9d679e41f6b7d27478e693523bd9ea1a, type: 3}
   m_Name: 
@@ -1513,7 +1513,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1799650837297414}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9d679e41f6b7d27478e693523bd9ea1a, type: 3}
   m_Name: 
@@ -1526,7 +1526,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1074251555023796}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9d679e41f6b7d27478e693523bd9ea1a, type: 3}
   m_Name: 
@@ -1539,7 +1539,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1597429810394814}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9d679e41f6b7d27478e693523bd9ea1a, type: 3}
   m_Name: 
