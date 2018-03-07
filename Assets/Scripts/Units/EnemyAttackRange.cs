@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class EnemyAttackRange : MonoBehaviour {
 
@@ -16,6 +14,7 @@ public class EnemyAttackRange : MonoBehaviour {
 
 	private void OnTriggerEnter(Collider other) {
 		if (player == null) { return; }
+
 		if (other.gameObject == player.gameObject) {
 			enemy.playerInRange = true;
 		}
@@ -23,6 +22,7 @@ public class EnemyAttackRange : MonoBehaviour {
 
 	private void OnTriggerExit(Collider other) {
 		if (player == null) { return; }
+
 		if (other.gameObject == player.gameObject) {
 			enemy.playerInRange = false;
 		}

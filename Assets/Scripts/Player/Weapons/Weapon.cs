@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityStandardAssets.CrossPlatformInput;
 
 public class Weapon : MonoBehaviour {
@@ -10,6 +9,9 @@ public class Weapon : MonoBehaviour {
 	public string WeaponName;
 	public int ammoCount;
 	public int ammoMax;
+
+	public enum WeaponType { Pistol, SMG };
+	public WeaponType weaponType;
 
 	[SerializeField] float cooldown = 0.5f;
 
@@ -40,6 +42,11 @@ public class Weapon : MonoBehaviour {
 		return weaponTimer < Mathf.Epsilon && Time.timeScale != 0;
 	}
 
+	public void Reload() {
+		ammoCount = ammoMax;
+		weaponController.UpdateWeaponDisplay();
+	}
+
 	public virtual void UseWeapon() {
 		weaponTimer = cooldown;
 
@@ -51,5 +58,17 @@ public class Weapon : MonoBehaviour {
 
 	public bool UsesAmmo() {
 		return ammoMax != -1;
+	}
+
+	public void AddCameraTrauma(float amount) {
+
+		PlayerCamera playerCamera = player.GetComponent<PlayerHealth>().playerCamera;
+
+		if (playerCamera) {
+			playerCamera.AddTrauma(amount);
+		}
+		//PlayerHealth player = gameObject.GetComponent<PlayerHealth>();
+		//PlayerCamera camera = player.playerCamera.GetComponent<PlayerCamera>();
+		//camera.AddTrauma(amount);
 	}
 }

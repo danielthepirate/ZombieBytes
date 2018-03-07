@@ -6,8 +6,13 @@ using UnityStandardAssets.CrossPlatformInput;
 public class PlayerWeapon : MonoBehaviour {
 
 	[SerializeField] Text weaponText;
-	[SerializeField] Weapon[] weapons;
+	public Weapon[] weapons;
 	public Weapon activeWeapon;
+
+	private void Start() {
+		//Without this, AmmoCrate doesn't to be able to find the right Weapon unless it's been set to Active at least once
+		Invoke("DefaultActiveWeapon", 0f);
+	}
 
 	private void Update() {
 		float scroll = CrossPlatformInputManager.GetAxis("Mouse ScrollWheel");
@@ -33,6 +38,10 @@ public class PlayerWeapon : MonoBehaviour {
 		activeWeapon = newActiveWeapon;
 		activeWeapon.gameObject.SetActive(true);
 		UpdateWeaponDisplay();
+	}
+
+	private void DefaultActiveWeapon() {
+		SetActiveWeapon(activeWeapon);
 	}
 
 	public void UpdateWeaponDisplay() {

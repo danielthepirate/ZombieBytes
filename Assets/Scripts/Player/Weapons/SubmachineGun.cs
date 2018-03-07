@@ -9,6 +9,7 @@ public class SubmachineGun : Weapon {
 	[SerializeField] float spread = 0.5f;
 	[SerializeField] float traceTime = 0.02f;
 	[SerializeField] float knockbackForce = 1f;
+	[SerializeField] float trauma = 0.1f;
 
 	[Header("Launch Data")]
 	[SerializeField] GameObject muzzle;
@@ -20,6 +21,7 @@ public class SubmachineGun : Weapon {
 	// Use this for initialization
 	void Start () {
 		traceLine = GetComponent<LineRenderer>();
+		weaponType = WeaponType.SMG;
 	}
 
 	// Update is called once per frame
@@ -64,6 +66,7 @@ public class SubmachineGun : Weapon {
 		traceLine.enabled = true;
 
 		Invoke("DisableTraceLine", traceTime);
+		AddCameraTrauma(trauma);
 	}
 
 	private void ConstructWeaponRay(ref Ray ray) {

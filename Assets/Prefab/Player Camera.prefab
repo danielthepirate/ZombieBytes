@@ -428,7 +428,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainCamera: {fileID: 20204316596462056}
   target: {fileID: 0}
-  smoothing: 12
+  smoothing: 10
   reductionFactor: 1
   frequency: 15
   maxOffset: 1

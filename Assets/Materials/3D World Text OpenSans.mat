@@ -6,7 +6,7 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: 3D World Text
+  m_Name: 3D World Text OpenSans
   m_Shader: {fileID: 4800000, guid: 91173b52abad6e9458e51e7b9ba0bf61, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4

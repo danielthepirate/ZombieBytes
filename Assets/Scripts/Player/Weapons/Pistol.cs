@@ -9,6 +9,7 @@ public class Pistol : Weapon {
 	[SerializeField] float spread = 0.5f;
 	[SerializeField] float traceTime = 0.02f;
 	[SerializeField] float knockbackForce = 1f;
+	[SerializeField] float trauma = 0.1f;
 
 	[Header("Launch Data")]
 	[SerializeField] GameObject muzzle;
@@ -19,8 +20,8 @@ public class Pistol : Weapon {
 
 	// Use this for initialization
 	void Start () {
-		print("pistol start");
 		traceLine = GetComponent<LineRenderer>();
+		weaponType = WeaponType.Pistol;
 	}
 
 	// Update is called once per frame
@@ -65,6 +66,7 @@ public class Pistol : Weapon {
 		traceLine.enabled = true;
 
 		Invoke("DisableTraceLine", traceTime);
+		AddCameraTrauma(trauma);
 	}
 
 	private void ConstructWeaponRay(ref Ray ray) {

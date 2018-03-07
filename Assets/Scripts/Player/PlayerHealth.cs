@@ -5,8 +5,8 @@ public class PlayerHealth : MonoBehaviour {
 
 	[SerializeField] GameObject hitDecal;
 	[SerializeField] GameObject ragdoll;
-	[SerializeField] GameObject playerCamera;
 
+	public PlayerCamera playerCamera;
 
 	public float healthCurrent = 100f;
 	public float healthMaximum = 100f;
@@ -60,10 +60,7 @@ public class PlayerHealth : MonoBehaviour {
 	}
 
 	private void ApplyCameraShake() {
-		PlayerCamera camera = playerCamera.GetComponent<PlayerCamera>();
-		if (camera) {
-			camera.ShakeLight();
-		}
+		playerCamera.ShakeLight();
 	}
 
 	private void ApplyKnockback(float knockBack, Vector3 damageOrigin) {

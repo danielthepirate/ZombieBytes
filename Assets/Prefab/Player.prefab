@@ -257,7 +257,6 @@ GameObject:
   - component: {fileID: 114399610248016496}
   - component: {fileID: 114669076650409718}
   - component: {fileID: 114441538512670432}
-  - component: {fileID: 114982118039419822}
   m_Layer: 9
   m_Name: Player
   m_TagString: Untagged
@@ -380,7 +379,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1532312532970492
 GameObject:
   m_ObjectHideFlags: 1
@@ -1918,12 +1917,14 @@ MonoBehaviour:
   WeaponName: SMG
   ammoCount: 20
   ammoMax: 20
+  weaponType: 0
   cooldown: 0.15
   damage: 1
   range: 20
   spread: 20
   traceTime: 0.04
   knockbackForce: 4
+  trauma: 0.15
   muzzle: {fileID: 1717264761155984}
   muzzleFlash: {fileID: 198815297852428232}
   fireDelay: 0.05
@@ -1973,8 +1974,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   accuracy: 0.9
-  speed: 8
-  turnRate: 8
+  speed: 7
+  turnRate: 7
   isDead: 0
 --- !u!114 &114769866256251886
 MonoBehaviour:
@@ -1991,27 +1992,17 @@ MonoBehaviour:
   WeaponName: Pistol
   ammoCount: -1
   ammoMax: -1
+  weaponType: 0
   cooldown: 0.5
   damage: 1
   range: 20
   spread: 10
   traceTime: 0.04
   knockbackForce: 6
+  trauma: 0.18
   muzzle: {fileID: 1092671994886900}
   muzzleFlash: {fileID: 198149592831657618}
   fireDelay: 0.1
---- !u!114 &114982118039419822
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1382865986465106}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 57e6c53b495f97648a1b9110047c99cb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerWeapon: {fileID: 114441538512670432}
 --- !u!120 &120403587536989810
 LineRenderer:
   m_ObjectHideFlags: 1
