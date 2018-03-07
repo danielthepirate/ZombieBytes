@@ -21,7 +21,6 @@ public class Pistol : Weapon {
 	// Use this for initialization
 	void Start () {
 		traceLine = GetComponent<LineRenderer>();
-		weaponType = WeaponType.Pistol;
 	}
 
 	// Update is called once per frame
@@ -42,6 +41,7 @@ public class Pistol : Weapon {
 	}
 
 	public void Fire() {
+		DeductAmmo();
 		int targetable = LayerMask.GetMask("Enemy");
 
 		Ray weaponRay = new Ray();

@@ -14,9 +14,6 @@ public class EnemyHealth : MonoBehaviour {
 	[SerializeField] GameObject ragdoll;
 	[SerializeField] GameObject floatingScoreText;
 
-	[Header("Loot Table")]
-	[SerializeField] Loot loot;
-
 	GameObject bucketFX;
 	Rigidbody rb;
 	EnemyController zombie;
@@ -31,6 +28,7 @@ public class EnemyHealth : MonoBehaviour {
 	}
 
 	public void Damage(float damageAmount, float knockBack, RaycastHit hitPoint) {
+		if(zombie.state == EnemyController.State.Dead) { return; }
 		CreateDamageFX(hitPoint);
 		ApplyKnockback(knockBack, hitPoint);
 
@@ -57,15 +55,8 @@ public class EnemyHealth : MonoBehaviour {
 	}
 
 	private void SpawnLoot() {
-		int roll = Random.Range(1, 100);
-
-		if(roll <= loot.dropChance) {
-			Vector3 lootPosition = new Vector3(transform.position.x, 0.8f, transform.position.z);
-			GameObject newLoot = Instantiate(loot.item);
-			newLoot.transform.position = lootPosition;
-		}
-
-
+		LootTable lt = GetComponent<LootTable>();
+		if (lt) { lt.DropLoot(); }
 	}
 
 	private void SpawnScoreText() {

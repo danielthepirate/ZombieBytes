@@ -10,7 +10,7 @@ public class Weapon : MonoBehaviour {
 	public int ammoCount;
 	public int ammoMax;
 
-	public enum WeaponType { Pistol, SMG };
+	public enum WeaponType { Pistol, SMG, Shotgun, AssaultRifle };
 	public WeaponType weaponType;
 
 	[SerializeField] float cooldown = 0.5f;
@@ -49,7 +49,9 @@ public class Weapon : MonoBehaviour {
 
 	public virtual void UseWeapon() {
 		weaponTimer = cooldown;
+	}
 
+	public void DeductAmmo() {
 		if (UsesAmmo()) {
 			ammoCount -= 1;
 			weaponController.UpdateWeaponDisplay();

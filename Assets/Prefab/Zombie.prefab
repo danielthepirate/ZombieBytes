@@ -285,6 +285,7 @@ GameObject:
   - component: {fileID: 195232891225214006}
   - component: {fileID: 114018295013952132}
   - component: {fileID: 114009362689600946}
+  - component: {fileID: 114914675532091192}
   m_Layer: 9
   m_Name: Zombie
   m_TagString: Untagged
@@ -980,9 +981,6 @@ MonoBehaviour:
   ragdoll: {fileID: 1949933349421886, guid: f606a948bdf3e294c81b5068e612188d, type: 2}
   floatingScoreText: {fileID: 1211558439847784, guid: a6f1d40ef0c913840b6f7f98015cc643,
     type: 2}
-  loot:
-    item: {fileID: 1524669005702918, guid: 188a47a71a459dc40b834773cd849909, type: 2}
-    dropChance: 20
 --- !u!114 &114683419527694826
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1007,6 +1005,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   unit: {fileID: 1949933349421886}
+--- !u!114 &114914675532091192
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1949933349421886}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2635a8914d763047bba2a5b590c5c00, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  table:
+  - item: {fileID: 1524669005702918, guid: 188a47a71a459dc40b834773cd849909, type: 2}
+    dropChance: 5
+  - item: {fileID: 1928893853030028, guid: c3fc5c952c3d5324f9afd4b458bba6cf, type: 2}
+    dropChance: 5
+  - item: {fileID: 1255540863356940, guid: 5875d4cc8fd58a043bf93091e91cd295, type: 2}
+    dropChance: 5
 --- !u!135 &135100736024718578
 SphereCollider:
   m_ObjectHideFlags: 1
