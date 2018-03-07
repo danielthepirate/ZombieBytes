@@ -1924,7 +1924,7 @@ MonoBehaviour:
   spread: 20
   traceTime: 0.04
   knockbackForce: 4
-  trauma: 0.15
+  trauma: 0.14
   muzzle: {fileID: 1717264761155984}
   muzzleFlash: {fileID: 198815297852428232}
   fireDelay: 0.05
@@ -1997,9 +1997,9 @@ MonoBehaviour:
   damage: 1
   range: 20
   spread: 10
-  traceTime: 0.04
+  traceTime: 0.06
   knockbackForce: 6
-  trauma: 0.18
+  trauma: 0.16
   muzzle: {fileID: 1092671994886900}
   muzzleFlash: {fileID: 198149592831657618}
   fireDelay: 0.1
@@ -2017,7 +2017,7 @@ LineRenderer:
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
   m_Materials:
-  - {fileID: 10306, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: e127c01ef41647645a48359e92fc1001, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2105,7 +2105,7 @@ LineRenderer:
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
   m_Materials:
-  - {fileID: 10306, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: e127c01ef41647645a48359e92fc1001, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
