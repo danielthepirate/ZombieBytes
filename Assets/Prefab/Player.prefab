@@ -4242,7 +4242,7 @@ MonoBehaviour:
   spread: 40
   traceTime: 0.04
   knockbackForce: 8
-  trauma: 0.25
+  trauma: 0.2
   muzzle: {fileID: 1092671994886900}
   muzzleFlash: {fileID: 198149592831657618}
   fireDelay: 0.1
@@ -4310,7 +4310,7 @@ MonoBehaviour:
   spread: 15
   traceTime: 0.06
   knockbackForce: 7
-  trauma: 0.17
+  trauma: 0.15
   muzzle: {fileID: 1469486004521826}
   muzzleFlash: {fileID: 198725594307968086}
   fireDelay: 0.1
@@ -4351,7 +4351,7 @@ MonoBehaviour:
   spread: 20
   traceTime: 0.04
   knockbackForce: 5
-  trauma: 0.14
+  trauma: 0.12
   muzzle: {fileID: 1573267664405570}
   muzzleFlash: {fileID: 198678632918042268}
   fireDelay: 0.05
@@ -4377,7 +4377,7 @@ MonoBehaviour:
   spread: 10
   traceTime: 0.06
   knockbackForce: 7
-  trauma: 0.16
+  trauma: 0.14
   muzzle: {fileID: 1674573099929666}
   muzzleFlash: {fileID: 198742213365577786}
   fireDelay: 0.1

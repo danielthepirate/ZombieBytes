@@ -35,7 +35,7 @@ public class AssaultRifle : Weapon {
 		Invoke("Fire", fireDelay);
 		Invoke("Fire", fireDelay * 2);
 		Invoke("Fire", fireDelay * 3);
-		Invoke("Disabe", fireDelay * 3);
+		//Invoke("DisableTraceLine", fireDelay * 3);
 	}
 
 	private void DisableTraceLine() {
